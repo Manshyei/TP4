@@ -111,7 +111,7 @@ public class Funcionario extends Pessoa {
 		
 		// Funcao para editar os dados de Cliente:
 		
-		public void editar(Funcionario cliente) {
+		/*public void editar(Funcionario cliente) {
 			
 			int num;
 			
@@ -158,7 +158,18 @@ public class Funcionario extends Pessoa {
 				}
 			} while (1 > num || num > 6);
 				
+		}*/
+		
+		public void editar(Funcionario funcionario, int pos) {
+			dadosFuncionario.get(pos).email = funcionario.email;
+			dadosFuncionario.get(pos).funcao = funcionario.funcao;
+			dadosFuncionario.get(pos).numCelular = funcionario.numCelular;
+			dadosFuncionario.get(pos).salario = funcionario.salario;
+			dadosFuncionario.get(pos).endereco = funcionario.endereco;
+			for(int i = 0; i < dadosFuncionario.size(); i ++)
+				System.out.println(dadosFuncionario.get(i).toString());
 		}
+		
 		
 		/*public void deletar(Funcionario funcionario) {
 			

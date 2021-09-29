@@ -59,6 +59,7 @@ public class ClienteVIP extends Pessoa {
 		dadosCliente.add(cliente4);
 		dadosCliente.add(cliente5);
 	}
+
 	
 	// ------------------ METODOS ------------------- //
 	
@@ -94,6 +95,8 @@ public class ClienteVIP extends Pessoa {
 	
 	public void cadastrar(ClienteVIP cliente) {
 		dadosCliente.add(cliente);
+		for(int i = 0; i < dadosCliente.size(); i ++) 
+			System.out.println(dadosCliente.get(i).toString());
 	}
 	
 	// Funcao para buscar um Cliente Especifico por CPF:
@@ -156,6 +159,16 @@ public class ClienteVIP extends Pessoa {
 		} while (1 > num || num > 6);
 			
 	}*/
+	
+public void editar(ClienteVIP cliente, int pos) {
+		dadosCliente.get(pos).email = cliente.email;
+		dadosCliente.get(pos).generoFavorito = cliente.generoFavorito;
+		dadosCliente.get(pos).numCelular = cliente.numCelular;
+		dadosCliente.get(pos).planoAssinatura = cliente.planoAssinatura;
+		dadosCliente.get(pos).qntddFilmesVistos = cliente.qntddFilmesVistos;
+		for(int i = 0; i < dadosCliente.size(); i ++)
+			System.out.println(dadosCliente.get(i).toString());
+	}
 	
 	/*public void deletar(ClienteVIP cliente) {
 		

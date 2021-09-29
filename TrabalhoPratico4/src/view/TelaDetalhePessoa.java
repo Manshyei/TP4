@@ -40,7 +40,7 @@ public class TelaDetalhePessoa implements ActionListener {
 	private JTextField valorSalario;
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
-	private String[] novoDado = new String[9];
+	private String[] novoDado = new String[15];
 	private int posicao;
 	private int opcao;
 	private String s;
@@ -50,11 +50,11 @@ public class TelaDetalhePessoa implements ActionListener {
 	public void inserirEditar(int op, 
 		TelaPessoa p, int pos) {
 		
-		//cliente.dadosPreCadastradosClientes();
-		//funcionario.dadosPreCadastradosFuncionario();
+			cliente.dadosPreCadastradosClientes();
+			funcionario.dadosPreCadastradosFuncionario();
 		
-		opcao = op;
-		posicao = pos;
+		this.opcao = op;
+		this.posicao = pos;
 
 		if (op == 1) s = "Cadastro de Cliente";
 		if (op == 2) s = "Cadastro de Funcionário";
@@ -185,6 +185,13 @@ public class TelaDetalhePessoa implements ActionListener {
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoExcluir.setFont(new Font("Arial", Font.BOLD, 18));
 			this.janela.add(botaoExcluir);
+			this.janela.add(botaoSalvar);
+		}
+		
+		if (op == 1 || op == 2) {
+			botaoSalvar.setBounds(330, 120, 150, 50);
+			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
+			this.janela.add(botaoSalvar);
 		}
 
 		this.janela.add(labelPrimNome);
@@ -215,42 +222,48 @@ public class TelaDetalhePessoa implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
-		if(src == botaoSalvar) {
-			try {
-				
-				novoDado[1] =  valorPrimNome.getText();
-				novoDado[2] =  valorCPF.getText();
-				novoDado[3] =  valorNumCel.getText();
-				novoDado[4] =  valorUltNome.getText();
-				novoDado[5] =  valorData.getText();
-				novoDado[6] =  valorEmail.getText();
-				novoDado[7] = valorGenFav.getText();
-				novoDado[8] = valorQntddFilmesVistos.getText();
-				novoDado[9] = valorPlanoAss.getText();
-				novoDado[10] =  valorFuncao.getText();
-				novoDado[11] =  valorEndereco.getText();
-				novoDado[12] =  valorSalario.getText();
+		if(src == botaoSalvar) {				
+				novoDado[0] = valorPrimNome.getText();
+				novoDado[1] = valorCPF.getText();
+				novoDado[2] = valorNumCel.getText();
+				novoDado[3] = valorUltNome.getText();
+				novoDado[4] = valorData.getText();
+				novoDado[5] = valorEmail.getText();
+				novoDado[6] = valorGenFav.getText();
+				novoDado[7] = valorQntddFilmesVistos.getText();
+				novoDado[8] = valorPlanoAss.getText();
+				novoDado[9] = valorFuncao.getText();
+				novoDado[10] = valorEndereco.getText();
+				novoDado[11] = valorSalario.getText();
 
-				if (opcao == 1 || opcao == 3) {
-					ClienteVIP attCliente = new ClienteVIP(novoDado[1], novoDado[4], 
-							novoDado[5], novoDado[2], novoDado[3], novoDado[6], novoDado[7], 
-							Integer.parseInt(novoDado[8]), novoDado[9]);
-					cliente.deletar(posicao);
+				if (opcao == 1) {
+					ClienteVIP attCliente = new ClienteVIP(novoDado[0], novoDado[3], 
+							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[6], 
+							Integer.parseInt(novoDado[7]), novoDado[8]);
 					cliente.cadastrar(attCliente);
-				} else {
-					Funcionario attFuncionario = new Funcionario(novoDado[1], novoDado[4],
-							novoDado[5], novoDado[2], novoDado[3], novoDado[6], novoDado[10], 
-							novoDado[11], Double.parseDouble(novoDado[12]));
-					funcionario.deletar(posicao);
+					
+				} else if (opcao == 2){
+					Funcionario attFuncionario = new Funcionario(novoDado[0], novoDado[3], 
+							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[9], 
+							novoDado[10], Double.parseDouble(novoDado[11]));
 					funcionario.cadastrar(attFuncionario);
+					
+				} else if (opcao == 3) {
+					ClienteVIP attCliente = new ClienteVIP(novoDado[0], novoDado[3], 
+							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[6], 
+							Integer.parseInt(novoDado[7]), novoDado[8]);
+					cliente.editar(attCliente, posicao);
+					
+				} else if (opcao == 4) {
+					Funcionario attFuncionario = new Funcionario(novoDado[0], novoDado[3], 
+							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[9], 
+							novoDado[10], Double.parseDouble(novoDado[11]));
+					funcionario.editar(attFuncionario, posicao);
+					
 				}
 				mensagemSucessoCadastro();
 
-			} catch (NullPointerException exc1) {
-				mensagemErroCadastro();
-			} catch (NumberFormatException exc2) {
-				mensagemErroCadastro();
-			}
+			
 		}
 
 		if(src == botaoExcluir) {
