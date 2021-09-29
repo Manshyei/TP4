@@ -64,7 +64,7 @@ public class ClienteVIP extends Pessoa {
 	
 	// Funcao para cadastrar os dados de Cliente:
 	
-	public void cadastrar() {
+	/*public void cadastrar() {
 		String primNome, ultNome, data, cpf, numCel, email, genFav, planAss;
 		int qntdFilmesVistos;
 				
@@ -90,6 +90,10 @@ public class ClienteVIP extends Pessoa {
 		ClienteVIP cliente = new ClienteVIP(primNome, ultNome, data, cpf, numCel, email, genFav, qntdFilmesVistos, planAss);
 		dadosCliente.add(cliente);
 		
+	}*/
+	
+	public void cadastrar(ClienteVIP cliente) {
+		dadosCliente.add(cliente);
 	}
 	
 	// Funcao para buscar um Cliente Especifico por CPF:
@@ -104,7 +108,7 @@ public class ClienteVIP extends Pessoa {
 	
 	// Funcao para editar os dados de Cliente:
 	
-	public void editar(ClienteVIP cliente) {
+	/*public void editar(ClienteVIP cliente) {
 		
 		int num;
 		
@@ -151,12 +155,16 @@ public class ClienteVIP extends Pessoa {
 			}
 		} while (1 > num || num > 6);
 			
-	}
+	}*/
 	
-	public void deletar(ClienteVIP cliente) {
+	/*public void deletar(ClienteVIP cliente) {
 		
 		dadosCliente.remove(dadosCliente.indexOf(cliente));
 		
+	}*/
+	
+	public void deletar(int pos) {
+		dadosCliente.remove(dadosCliente.get(pos));
 	}
 	
 	public String toString() {	
@@ -177,6 +185,7 @@ public class ClienteVIP extends Pessoa {
 		String[] var = new String [1000];
 		for(int i = 0; i < dadosCliente.size(); i ++) {
 			var[i] = dadosCliente.get(i).getPrimeiroNome();
+			//System.out.println(dadosCliente.get(i).getPrimeiroNome());
 		}
 		return var;
 	}

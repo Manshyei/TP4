@@ -15,12 +15,12 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	private JList<String> listaClientesCadastrados;
 	private JList<String> listaFuncionariosCadastrados;
 	private String[] listaNomes = new String[1000];
+	ClienteVIP cliente = new ClienteVIP();
+	Funcionario funcionario = new Funcionario();
 
 	public void mostrarDados(int op){
-		ClienteVIP cliente = new ClienteVIP();
-		cliente.dadosPreCadastradosClientes();
 		
-		Funcionario funcionario = new Funcionario();
+		cliente.dadosPreCadastradosClientes();
 		funcionario.dadosPreCadastradosFuncionario();
 
 		switch (op) {
@@ -123,13 +123,13 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == refreshCliente) {
-			listaClientesCadastrados.setListData(new ClienteVIP().visualizarNome());			
+			listaClientesCadastrados.setListData(cliente.visualizarNome());			
 			listaClientesCadastrados.updateUI();
 		}
 
 		// Atualiza a lista de nomes de professores mostrada no JList
 		if(src == refreshProf) {
-			listaFuncionariosCadastrados.setListData(new Funcionario().visualizarNome());
+			listaFuncionariosCadastrados.setListData(funcionario.visualizarNome());
 			listaFuncionariosCadastrados.updateUI();
 		}
 

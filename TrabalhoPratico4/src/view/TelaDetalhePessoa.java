@@ -44,15 +44,14 @@ public class TelaDetalhePessoa implements ActionListener {
 	private int posicao;
 	private int opcao;
 	private String s;
+	ClienteVIP cliente = new ClienteVIP();
+	Funcionario funcionario = new Funcionario();
 
 	public void inserirEditar(int op, 
-			TelaPessoa p, int pos) {
-
-		ClienteVIP cliente = new ClienteVIP();
-		cliente.dadosPreCadastradosClientes();
+		TelaPessoa p, int pos) {
 		
-		Funcionario funcionario = new Funcionario();
-		funcionario.dadosPreCadastradosFuncionario();
+		//cliente.dadosPreCadastradosClientes();
+		//funcionario.dadosPreCadastradosFuncionario();
 		
 		opcao = op;
 		posicao = pos;
@@ -64,8 +63,35 @@ public class TelaDetalhePessoa implements ActionListener {
 
 		janela = new JFrame(s);
 
-		//Preenche dados com dados do cliente clicado
-		if (op == 3) {
+		if (op == 1) {
+			valorPrimNome = new JTextField(200);
+			valorUltNome = new JTextField(200);
+			valorData = new JTextField(200);
+			valorCPF = new JTextField(200);
+			valorNumCel = new JTextField(200);
+			valorEmail = new JTextField(200);
+			valorGenFav = new JTextField(200);	
+			valorQntddFilmesVistos = new JTextField(200);
+			valorPlanoAss = new JTextField(200);
+			valorFuncao = new JTextField(200);	
+			valorEndereco = new JTextField(200);
+			valorSalario = new JTextField(200);
+			
+		} else if (op == 2) {
+			valorPrimNome = new JTextField(200);
+			valorUltNome = new JTextField(200);
+			valorData = new JTextField(200);
+			valorCPF = new JTextField(200);
+			valorNumCel = new JTextField(200);
+			valorEmail = new JTextField(200);
+			valorGenFav = new JTextField(200);	
+			valorQntddFilmesVistos = new JTextField(200);
+			valorPlanoAss = new JTextField(200);
+			valorFuncao = new JTextField(200);	
+			valorEndereco = new JTextField(200);
+			valorSalario = new JTextField(200);
+			
+		} else if (op == 3) { //Preenche dados com dados do cliente clicado
 			valorPrimNome = new JTextField(cliente.retornaPrimNome(posicao), 200);
 			valorUltNome = new JTextField(cliente.retornaUltNome(posicao),200);
 			valorData = new JTextField(cliente.retornaData(posicao), 200);
@@ -187,36 +213,38 @@ public class TelaDetalhePessoa implements ActionListener {
 	}
 
 
-	/*public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if(src == botaoSalvar) {
 			try {
-				boolean res;
-				if(opcao == 1) //cadastro de novo aluno
-					novoDado[0] = Integer.toString(dados.getQtdAlunos());
-				else if (opcao == 2) // cadastro de novo prof
-					novoDado[0] = Integer.toString(dados.getQtdProfs());
-				else // edicao de dado existente
-					novoDado[0] = Integer.toString(posicao);
-
+				
 				novoDado[1] =  valorPrimNome.getText();
-				novoDado[3] =  valorCPF.getText();
-				novoDado[4] =  valorNumCel.getText();
-				novoDado[5] =  valorDDD.getText();
-				novoDado[6] =  valorTelefone.getText();
+				novoDado[2] =  valorCPF.getText();
+				novoDado[3] =  valorNumCel.getText();
+				novoDado[4] =  valorUltNome.getText();
+				novoDado[5] =  valorData.getText();
+				novoDado[6] =  valorEmail.getText();
+				novoDado[7] = valorGenFav.getText();
+				novoDado[8] = valorQntddFilmesVistos.getText();
+				novoDado[9] = valorPlanoAss.getText();
+				novoDado[10] =  valorFuncao.getText();
+				novoDado[11] =  valorEndereco.getText();
+				novoDado[12] =  valorSalario.getText();
 
 				if (opcao == 1 || opcao == 3) {
-					novoDado[2] =  valorData.getText();
-					res = dados.inserirEditarAluno(novoDado);
+					ClienteVIP attCliente = new ClienteVIP(novoDado[1], novoDado[4], 
+							novoDado[5], novoDado[2], novoDado[3], novoDado[6], novoDado[7], 
+							Integer.parseInt(novoDado[8]), novoDado[9]);
+					cliente.deletar(posicao);
+					cliente.cadastrar(attCliente);
 				} else {
-					novoDado[2] =  valorUltNome.getText();
-					res = dados.inserirEditarProf(novoDado);
+					Funcionario attFuncionario = new Funcionario(novoDado[1], novoDado[4],
+							novoDado[5], novoDado[2], novoDado[3], novoDado[6], novoDado[10], 
+							novoDado[11], Double.parseDouble(novoDado[12]));
+					funcionario.deletar(posicao);
+					funcionario.cadastrar(attFuncionario);
 				}
-
-				if(res) {
-					mensagemSucessoCadastro();
-				}
-				else mensagemErroCadastro();
+				mensagemSucessoCadastro();
 
 			} catch (NullPointerException exc1) {
 				mensagemErroCadastro();
@@ -226,24 +254,22 @@ public class TelaDetalhePessoa implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-			boolean res = false;
 
-			if (opcao == 3) {//exclui aluno
-				res = dados.removerAluno(posicao);
-				if (res) mensagemSucessoExclusao(); 
-				else mensagemErroExclusaoAluno(); 
+			if (opcao == 3) {//exclui cliente
+				//Testar excluir clientes novos, se sim clientes pre cadastrados n poderao ser excluidos.
+				cliente.deletar(posicao);
+				mensagemSucessoExclusao();
 			}
 				
 			if (opcao == 4){ //exclui professor
-				res = dados.removerProfessor(posicao);
-				if (res) mensagemSucessoExclusao(); 
-				else mensagemErroExclusaoProf(); 
+				funcionario.deletar(posicao);
+				mensagemSucessoExclusao(); 
 			}
 
 
 			
 		}
-	}*/
+	}
 
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
@@ -279,13 +305,6 @@ public class TelaDetalhePessoa implements ActionListener {
 				+ "por alguma disciplina. Se sim, substitua\n "
 				+ "o professor e tente novamente.", null, 
 				JOptionPane.ERROR_MESSAGE);
-	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -67,7 +67,7 @@ public class Funcionario extends Pessoa {
 	
 	// Funcao para cadastrar os dados de Funcionario:
 	
-		public void cadastrar() {
+		/*public void cadastrar() {
 			String primNome, ultNome, data, cpf, numCel, email, funcao, endereco;
 			double salario;
 					
@@ -93,6 +93,10 @@ public class Funcionario extends Pessoa {
 			Funcionario funcionario = new Funcionario(primNome, ultNome, data, cpf, numCel, email, funcao, endereco, salario);
 			dadosFuncionario.add(funcionario);
 			
+		}*/
+	
+		public void cadastrar(Funcionario funcionario) {
+			dadosFuncionario.add(funcionario);
 		}
 		
 		// Funcao para buscar um Funcionario Especifico por CPF:
@@ -156,9 +160,15 @@ public class Funcionario extends Pessoa {
 				
 		}
 		
-		public void deletar(Funcionario funcionario) {
+		/*public void deletar(Funcionario funcionario) {
 			
 			dadosFuncionario.remove(dadosFuncionario.indexOf(funcionario));
+			
+		}*/
+		
+		public void deletar(int pos) {
+			
+			dadosFuncionario.remove(dadosFuncionario.get(pos));
 			
 		}
 		
