@@ -107,6 +107,8 @@ public class TelaDetalheIngresso implements ActionListener {
 		botaoCancelar.setBounds(10, 375, 150, 50);
 		botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 		botaoCancelar.setFont(new Font("Arial", Font.BOLD, 18));
+		//labelForPag.setFont(new Font("Arial", Font.BOLD, 12));
+		
 		this.janela.add(botaoCancelar);
 		this.janela.add(botaoSalvar);
 

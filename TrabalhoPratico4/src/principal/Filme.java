@@ -14,7 +14,8 @@ public class Filme {
 	private String genero;
 	private String dataLancamento;
 	private int salaTransmissao;
-	private Programacao programacao;
+	private int horario;
+	private String dataExib;
 	private Ingresso ingresso[];
 	
 	public Filme(){
@@ -25,7 +26,7 @@ public class Filme {
 	
 	public Filme(String nomeDoFilme, int duracaoDoFilme, int classificacao, 
 			String idiomaDoFilme, String sinopseFilme, String generoFilme, 
-			String data_lancamento, int sala_transmissao, Programacao prog) {
+			String data_lancamento, int sala_transmissao, int hora, String dt) {
 		nome = nomeDoFilme;
 		duracao = duracaoDoFilme;
 		classificacaoIndicativa = classificacao;
@@ -34,7 +35,8 @@ public class Filme {
 		genero = generoFilme;
 		dataLancamento = data_lancamento;
 		salaTransmissao = sala_transmissao;
-		programacao = prog;
+		horario = hora;
+		dataExib = dt;
 	}
 	
 	// Funcionalidades:
@@ -47,18 +49,14 @@ public class Filme {
 	// Pré-cadastro de dados do cliente:
 	
 	public void dadosPreCadastradosFilmes(){
-		Programacao prog1 = new Programacao(14,"15/03/2021");
-		Filme shang_chi = new Filme("Shang-Chi e a lenda dos dez anéis",135,12,"Português","Shang-Chi deve enfrentar o passado quando é atraído para a teia da organização Dez Anéis.", "Ação","02/03/2021",2, prog1);
-		Programacao prog2 = new Programacao(15,"23/08/2020");
+		Filme shang_chi = new Filme("Shang-Chi e a lenda dos dez anéis",135,12,"Português","Shang-Chi deve enfrentar o passado quando é atraído para a teia da organização Dez Anéis.", "Ação","02/03/2021",2, 14,"15/03/2021");
 		Filme viuva_negra = new Filme("Viúva negra",133,12,"Português","Em Viúva Negra, acompanhamos a vida de Natasha Romanoff (Scarlett Johansson) após os eventos de Guerra Civil. "
 				+ "Se escondendo do governo norte-americano devido a sua aliança com o time do Capitão América, Natasha ainda precisa confrontar partes de sua história quando surge uma conspiração perigosa ligada ao seu passado. "
 				+ "Perseguida por uma força que não irá parar até derrotá-la, ela terá que lidar com sua antiga vida de espiã, e também reencontrar membros de sua família que deixou para trás antes de se tornar parte dos Vingadores.",
-				"Ação","02/09/2021",10,prog2);
-		Programacao prog3 = new Programacao(12,"19/10/2021");
+				"Ação","02/09/2021",10, 15,"23/08/2020");
 		Filme pulp_fiction = new Filme("Pulp Fiction - Tempo de violência", 152,18,"Português","Os assassinos Vincent e Jules passam por imprevistos ao recuperar uma mala para um mafioso. "
 				+ "O boxeador Butch é pago pelo mesmo mafioso para perder uma luta, e a esposa do criminoso fica sob responsabilidade de Vincent por uma noite."
-				+ " Essas histórias se relacionam numa teia repleta de violência.","Ação","18/02/1995",13,prog3);
-		Programacao prog4 = new Programacao(22,"04/12/2021");
+				+ " Essas histórias se relacionam numa teia repleta de violência.","Ação","18/02/1995",13,12,"19/10/2021");
 		Filme titanic = new Filme("TITANIC", 194, 12, "Português","Jack Dawson (Leonardo DiCaprio) é um jovem aventureiro que, na mesa de jogo, ganha uma passagem para a primeira viagem do transatlântico Titanic."
 				+ " Trata-se de um luxuoso e imponente navio, anunciado na época como inafundável, que parte para os Estados Unidos."
 				+ " Nele está também Rose DeWitt Bukater (Kate Winslet), a jovem noiva de Caledon Hockley (Billy Zane). "
@@ -68,11 +66,10 @@ public class Filme {
 				+ "Pelo ato ele é convidado a jantar na primeira classe, onde começa a se tornar mais próximo de Rose."
 				+ " Logo eles se apaixonam, despertando a fúria de Caledon. "
 				+ "A situação fica ainda mais complicada quando o Titanic se choca com um iceberg, provocando algo que ninguém imaginava ser possível: o naufrágio do navio.",
-				"Drama","16/01/1998",8,prog4);
-		Programacao prog5 = new Programacao(16,"16/12/2021");
+				"Drama","16/01/1998",8,22,"04/12/2021");
 		Filme gente_grande = new Filme("Gente Grande", 99,12,"Português","Cinco amigos de infância se reencontram após a morte de seu treinador."
 				+ " Juntos novamente, Lenny (Adam Sandler), Eric (Kevin James), Kurt (Chris Rock), Marcus (David Spade) e Rob (Rob Schneider) decidem curtir o feriado de 4 de julho com suas famílias em uma casa no lago. "
-				+ "Eles relembram os bons momentos e fazem novas descobertas, além de se meterem em muitas confusões.","Comédia","24/09/2010",5, prog5);
+				+ "Eles relembram os bons momentos e fazem novas descobertas, além de se meterem em muitas confusões.","Comédia","24/09/2010",5, 6,"16/12/2021");
 	
 		dadosFilmes.add(shang_chi);
 		dadosFilmes.add(viuva_negra);
@@ -252,11 +249,11 @@ public class Filme {
 	}
 	
 	public int retornaHorario(int pos) {
-		return dadosFilmes.get(pos).programacao.retornaHora(pos);
+		return dadosFilmes.get(pos).getHorario();
 	}
 	
 	public String retornaDataExib(int pos) {
-		return dadosFilmes.get(pos).programacao.retornaDataExib(pos);
+		return dadosFilmes.get(pos).getDataExibicao();
 	}
 		
 	// ------------ GETTERS AND SETTERS ------------ //
@@ -325,12 +322,20 @@ public class Filme {
 		this.salaTransmissao = salaTransmissao;
 	}
 	
-	public Programacao getProgramacao() {
-		return programacao;
+	public int getHorario() {
+		return horario;
 	}
 
-	public void setProgramacao(Programacao programacao) {
-		this.programacao = programacao;
+	public void setHorario(int horario) {
+		this.horario = horario;
+	}
+
+	public String getDataExibicao() {
+		return dataExib;
+	}
+
+	public void setDataExibicao(String dataExibicao) {
+		this.dataExib = dataExibicao;
 	}
 	
 }

@@ -51,7 +51,6 @@ public class TelaDetalheFilme implements ActionListener {
 	private int opcao;
 	private String s;
 	Filme filme = new Filme();
-	//Programacao prog = new Programacao();
 	
 	public void inserirEditar(int op, 
 		TelaFilme p, Filme f, int pos) {
@@ -93,24 +92,24 @@ public class TelaDetalheFilme implements ActionListener {
 
 		labelNomeFilme.setBounds(10, 10, 150, 25);
 		valorNomeFilme.setBounds(145, 10, 180, 25);
-		labelClasIndic.setBounds(10, 57, 150, 25);
-		valorClasIndic.setBounds(145, 57, 180, 25);
-		labelDurFilme.setBounds(10, 104, 180, 25);
-		valorDurFilme.setBounds(145, 104, 180, 25);		
-		labelIdioma.setBounds(10, 151, 150, 25);
-		valorIdioma.setBounds(145, 151, 180, 25);
-		labelSinopse.setBounds(10, 199, 150, 25);
-		valorSinopse.setBounds(145, 199, 180, 25);
-		labelGenero.setBounds(10, 246, 150, 25);
-		valorGenero.setBounds(145, 246, 180, 25);
-		labelDataLanc.setBounds(10, 293, 150, 25);
-		valorDataLanc.setBounds(145, 293, 180, 25);
-		labelSalaTrans.setBounds(10, 199, 150, 25);
-		valorSalaTrans.setBounds(145, 199, 180, 25);
-		labelHora.setBounds(10, 246, 150, 25);
-		valorHora.setBounds(145, 246, 180, 25);
-		labelDataExib.setBounds(10, 293, 150, 25);
-		valorDataExib.setBounds(145, 293, 180, 25);
+		labelClasIndic.setBounds(10, 40, 150, 25);
+		valorClasIndic.setBounds(145, 40, 180, 25);
+		labelDurFilme.setBounds(10, 70, 180, 25);
+		valorDurFilme.setBounds(145, 70, 180, 25);		
+		labelIdioma.setBounds(10, 100, 150, 25);
+		valorIdioma.setBounds(145, 100, 180, 25);
+		labelSinopse.setBounds(10, 130, 150, 25);
+		valorSinopse.setBounds(145, 130, 180, 25);
+		labelGenero.setBounds(10, 160, 150, 25);
+		valorGenero.setBounds(145, 160, 180, 25);
+		labelDataLanc.setBounds(10, 190, 150, 25);
+		valorDataLanc.setBounds(145, 190, 180, 25);
+		labelSalaTrans.setBounds(10, 220, 150, 25);
+		valorSalaTrans.setBounds(145, 220, 180, 25);
+		labelHora.setBounds(10, 250, 150, 25);
+		valorHora.setBounds(145, 250, 180, 25);
+		labelDataExib.setBounds(10, 280, 150, 25);
+		valorDataExib.setBounds(145, 280, 180, 25);
 
 		//Coloca botoes de excluir e salvar
 		if (op == 2) {
@@ -154,7 +153,7 @@ public class TelaDetalheFilme implements ActionListener {
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(500, 325);
+		this.janela.setSize(500, 410);
 		this.janela.setVisible(true);
 		this.janela.setLocationRelativeTo(null);
 		this.janela.setResizable(false);
@@ -178,21 +177,19 @@ public class TelaDetalheFilme implements ActionListener {
 				novoDado[8] = valorHora.getText();
 				novoDado[9] = valorDataExib.getText();
 
-				if (opcao == 1) {
-					Programacao novaprog = new Programacao(Integer.parseInt(novoDado[8]), novoDado[9]);
-					
+				if (opcao == 1) {	
 					Filme novoFilme = new Filme(novoDado[0], Integer.parseInt(novoDado[3]), 
 							Integer.parseInt(novoDado[4]), novoDado[1], novoDado[5], 
-							novoDado[2], novoDado[6], Integer.parseInt(novoDado[7]), novaprog);
+							novoDado[2], novoDado[6], Integer.parseInt(novoDado[7]), 
+							Integer.parseInt(novoDado[8]), novoDado[9]);
 					
 					filme.cadastrar(novoFilme);
 					
 				} else if (opcao == 2) {
-					Programacao novaprog = new Programacao(Integer.parseInt(novoDado[8]), novoDado[9]);
-					
 					Filme attFilme = new Filme(novoDado[0], Integer.parseInt(novoDado[3]), 
 							Integer.parseInt(novoDado[4]), novoDado[1], novoDado[5], 
-							novoDado[2], novoDado[6], Integer.parseInt(novoDado[7]), novaprog);
+							novoDado[2], novoDado[6], Integer.parseInt(novoDado[7]), 
+							Integer.parseInt(novoDado[8]), novoDado[9]);
 					filme.editar(attFilme, posicao);
 				}
 				mensagemSucessoCadastro();

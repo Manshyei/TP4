@@ -14,6 +14,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	private JButton refreshCliente;
 	private JButton cadastroProf;
 	private JButton refreshProf;
+	private JButton voltar;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane ScrollPane = new JScrollPane();
 	private JList<String> listaClientesCadastrados;
@@ -34,11 +35,13 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			titulo = new JLabel("Clientes Cadastrados");
 			cadastroCliente = new JButton("Cadastrar");
 			refreshCliente = new JButton("Atualizar");
+			voltar = new JButton("<=");
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 30));
 			cadastroCliente.setFont(new Font("Arial", Font.BOLD, 18));
 			refreshCliente.setFont(new Font("Arial", Font.BOLD, 18));
 			listaClientesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
+			voltar.setFont(new Font("Arial", Font.BOLD, 15));
 			titulo.setBounds(90, 15, 350, 30);
 //			listaClientesCadastrados.setBounds(40, 50, 400, 140);
 //			listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -49,8 +52,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
 	        panel.add(ScrollPane);
 
-			cadastroCliente.setBounds(70, 210, 150, 50);
-			refreshCliente.setBounds(250, 210, 150, 50);
+			cadastroCliente.setBounds(166, 210, 150, 50);
+			refreshCliente.setBounds(326, 210, 150, 50);
+			voltar.setBounds(7, 210, 50, 50);
 
 			janela.setLayout(null);
 
@@ -59,12 +63,14 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			janela.add(cadastroCliente);
 			janela.add(refreshCliente);
 			janela.add(panel);
+			janela.add(voltar);
 
 			janela.setSize(500, 325);
 			janela.setVisible(true);
 
 			cadastroCliente.addActionListener(this);
 			refreshCliente.addActionListener(this);
+			voltar.addActionListener(this);
 			listaClientesCadastrados.addListSelectionListener(this);
 			janela.setLocationRelativeTo(null);
 			janela.setResizable(false);
@@ -147,6 +153,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			listaFuncionariosCadastrados.setListData(funcionario.visualizarNome());
 			listaFuncionariosCadastrados.updateUI();
 		}
+		
+		if (src == voltar ) janela.dispose();
 
 	}
 	
