@@ -166,8 +166,6 @@ public class Funcionario extends Pessoa {
 			dadosFuncionario.get(pos).numCelular = funcionario.numCelular;
 			dadosFuncionario.get(pos).salario = funcionario.salario;
 			dadosFuncionario.get(pos).endereco = funcionario.endereco;
-			for(int i = 0; i < dadosFuncionario.size(); i ++)
-				System.out.println(dadosFuncionario.get(i).toString());
 		}
 		
 		

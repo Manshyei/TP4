@@ -1,6 +1,8 @@
 package view;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import principal.*;
@@ -17,9 +19,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	private String[] listaNomes = new String[1000];
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
-
+	
 	public void mostrarDados(int op){
-		
 		cliente.dadosPreCadastradosClientes();
 		funcionario.dadosPreCadastradosFuncionario();
 
@@ -115,11 +116,11 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de novo aluno
 		if(src == cadastroCliente)
-			new TelaDetalhePessoa().inserirEditar(1, this, 0);
+			new TelaDetalhePessoa().inserirEditar(1, this, cliente, funcionario, 0);
 
 		//Cadastro de novo professor
 		if(src == cadastroProf)
-			new TelaDetalhePessoa().inserirEditar(2, this, 0);
+			new TelaDetalhePessoa().inserirEditar(2, this, cliente, funcionario, 0);
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == refreshCliente) {
@@ -127,7 +128,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			listaClientesCadastrados.updateUI();
 		}
 
-		// Atualiza a lista de nomes de professores mostrada no JList
+		// Atualiza a lista de nomes de funcionarios mostrada no JList
 		if(src == refreshProf) {
 			listaFuncionariosCadastrados.setListData(funcionario.visualizarNome());
 			listaFuncionariosCadastrados.updateUI();
@@ -140,12 +141,12 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 
 		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(3, this, 
+			new TelaDetalhePessoa().inserirEditar(3, this, cliente, funcionario,
 					listaClientesCadastrados.getSelectedIndex());
 		}
 
 		if(e.getValueIsAdjusting() && src == listaFuncionariosCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(4, this, 
+			new TelaDetalhePessoa().inserirEditar(4, this, cliente, funcionario,
 					listaFuncionariosCadastrados.getSelectedIndex());
 		}
 	}

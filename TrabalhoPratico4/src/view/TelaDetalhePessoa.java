@@ -3,6 +3,7 @@ package view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,21 +41,20 @@ public class TelaDetalhePessoa implements ActionListener {
 	private JTextField valorSalario;
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
-	private String[] novoDado = new String[15];
+	private String[] novoDado = new String[12];
 	private int posicao;
 	private int opcao;
 	private String s;
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
-
+	
 	public void inserirEditar(int op, 
-		TelaPessoa p, int pos) {
-		
-			cliente.dadosPreCadastradosClientes();
-			funcionario.dadosPreCadastradosFuncionario();
+		TelaPessoa p, ClienteVIP c, Funcionario f, int pos) {
 		
 		this.opcao = op;
 		this.posicao = pos;
+		cliente = c;
+		funcionario = f;
 
 		if (op == 1) s = "Cadastro de Cliente";
 		if (op == 2) s = "Cadastro de Funcionário";
@@ -237,16 +237,16 @@ public class TelaDetalhePessoa implements ActionListener {
 				novoDado[11] = valorSalario.getText();
 
 				if (opcao == 1) {
-					ClienteVIP attCliente = new ClienteVIP(novoDado[0], novoDado[3], 
+					ClienteVIP novoCliente = new ClienteVIP(novoDado[0], novoDado[3], 
 							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[6], 
 							Integer.parseInt(novoDado[7]), novoDado[8]);
-					cliente.cadastrar(attCliente);
+					cliente.cadastrar(novoCliente);
 					
 				} else if (opcao == 2){
-					Funcionario attFuncionario = new Funcionario(novoDado[0], novoDado[3], 
+					Funcionario novoFuncionario = new Funcionario(novoDado[0], novoDado[3], 
 							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[9], 
 							novoDado[10], Double.parseDouble(novoDado[11]));
-					funcionario.cadastrar(attFuncionario);
+					funcionario.cadastrar(novoFuncionario);
 					
 				} else if (opcao == 3) {
 					ClienteVIP attCliente = new ClienteVIP(novoDado[0], novoDado[3], 

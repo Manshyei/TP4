@@ -14,9 +14,12 @@ public class TelaMenu implements ActionListener {
 	private static JButton funcionario = new JButton("Funcionário");
 	private static JButton sala = new JButton("Sala de Cinema");
 	private static JButton ingresso = new JButton("Ingresso");
+	ClienteVIP cliente = new ClienteVIP();
+	Funcionario func = new Funcionario();
 	//public static ControleDados dados = new ControleDados();
 	
 	public TelaMenu() {
+		
 		titulo.setFont(new Font("Arial", Font.BOLD, 30));
 		clienteVIP.setFont(new Font("Arial", Font.BOLD, 18));
 		filme.setFont(new Font("Arial", Font.BOLD, 18));
