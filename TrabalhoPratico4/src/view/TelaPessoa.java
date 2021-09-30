@@ -35,26 +35,26 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			titulo = new JLabel("Clientes Cadastrados");
 			cadastroCliente = new JButton("Cadastrar");
 			refreshCliente = new JButton("Atualizar");
-			voltar = new JButton("<=");
+			voltar = new JButton("Voltar");
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 30));
 			cadastroCliente.setFont(new Font("Arial", Font.BOLD, 18));
 			refreshCliente.setFont(new Font("Arial", Font.BOLD, 18));
 			listaClientesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
-			voltar.setFont(new Font("Arial", Font.BOLD, 15));
+			voltar.setFont(new Font("Arial", Font.BOLD, 18));
 			titulo.setBounds(90, 15, 350, 30);
 //			listaClientesCadastrados.setBounds(40, 50, 400, 140);
 //			listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 //			listaClientesCadastrados.setVisibleRowCount(10);
 			
-			panel.setBounds(40, 50, 400, 140);
+			panel.setBounds(40, 110, 400, 140);
 			ScrollPane.setViewportView(listaClientesCadastrados);
 			listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
 	        panel.add(ScrollPane);
 
-			cadastroCliente.setBounds(166, 210, 150, 50);
-			refreshCliente.setBounds(326, 210, 150, 50);
-			voltar.setBounds(7, 210, 50, 50);
+			cadastroCliente.setBounds(166, 280, 150, 50);
+			refreshCliente.setBounds(326, 280, 150, 50);
+			voltar.setBounds(7, 280, 150, 50);
 
 			janela.setLayout(null);
 
@@ -65,7 +65,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			janela.add(panel);
 			janela.add(voltar);
 
-			janela.setSize(500, 325);
+			janela.setSize(500, 390);
 			janela.setVisible(true);
 
 			cadastroCliente.addActionListener(this);
@@ -84,14 +84,16 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			titulo = new JLabel("Funcionários Cadastrados");
 			cadastroProf = new JButton("Cadastrar");
 			refreshProf = new JButton("Atualizar");
+			voltar = new JButton("Voltar");
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 30));
 			cadastroProf.setFont(new Font("Arial", Font.BOLD, 18));
 			refreshProf.setFont(new Font("Arial", Font.BOLD, 18));
 			listaFuncionariosCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
+			voltar.setFont(new Font("Arial", Font.BOLD, 18));
 
 			titulo.setBounds(65, 15, 400, 30);
-			panel.setBounds(40, 50, 400, 140);
+			panel.setBounds(40, 110, 400, 140);
 			ScrollPane.setViewportView(listaFuncionariosCadastrados);
 			listaFuncionariosCadastrados.setLayoutOrientation(JList.VERTICAL);
 	        panel.add(ScrollPane);
@@ -101,8 +103,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 //			listaFuncionariosCadastrados.setVisibleRowCount(10);
 
 
-			cadastroProf.setBounds(70, 210, 150, 50);
-			refreshProf.setBounds(250, 210, 150, 50);
+			cadastroProf.setBounds(166, 280, 150, 50);
+			refreshProf.setBounds(326, 280, 150, 50);
+			voltar.setBounds(7, 280, 150, 50);
 
 			janela.setLayout(null);
 
@@ -110,13 +113,15 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			//janela.add(listaFuncionariosCadastrados);
 			janela.add(cadastroProf);
 			janela.add(refreshProf);
+			janela.add(voltar);
 			janela.add(panel);
 
-			janela.setSize(500, 325);
+			janela.setSize(500, 390);
 			janela.setVisible(true);
 
 			cadastroProf.addActionListener(this);
 			refreshProf.addActionListener(this);
+			voltar.addActionListener(this);
 			listaFuncionariosCadastrados.addListSelectionListener(this);
 			janela.setLocationRelativeTo(null);
 			janela.setResizable(false);

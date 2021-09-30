@@ -41,6 +41,7 @@ public class TelaDetalhePessoa implements ActionListener {
 	private JTextField valorSalario;
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
+	private JButton botaoCancelar = new JButton("Cancelar");
 	private String[] novoDado = new String[12];
 	private int posicao;
 	private int opcao;
@@ -121,16 +122,7 @@ public class TelaDetalhePessoa implements ActionListener {
 			valorQntddFilmesVistos = new JTextField(200);
 			valorPlanoAss = new JTextField(200);
 
-		} else { //Não preenche com dados
-
-			valorPrimNome = new JTextField(200);
-			valorData = new JTextField(200);
-			valorUltNome = new JTextField(200);
-			valorCPF = new JTextField(200);
-			valorNumCel = new JTextField(200);
-
-			botaoSalvar.setBounds(245, 175, 115, 30);
-		}
+		} 
 
 		labelPrimNome.setBounds(20, 10, 150, 25);
 		valorPrimNome.setBounds(145, 10, 180, 25);
@@ -180,17 +172,19 @@ public class TelaDetalhePessoa implements ActionListener {
 
 		//Coloca botoes de excluir e salvar
 		if (op == 3 || op == 4) {
-			botaoSalvar.setBounds(330, 50, 150, 50);
-			botaoExcluir.setBounds(330, 190, 150, 50);
+			botaoSalvar.setBounds(180, 290, 150, 50);
+			botaoExcluir.setBounds(10, 290, 150, 50);
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoExcluir.setFont(new Font("Arial", Font.BOLD, 18));
 			this.janela.add(botaoExcluir);
 			this.janela.add(botaoSalvar);
 		}
 		
-		if (op == 1 || op == 2) {
-			botaoSalvar.setBounds(330, 120, 150, 50);
+		if (op == 1 || op  == 2) {
+			botaoSalvar.setBounds(180, 290, 150, 50);
+			botaoCancelar.setBounds(10, 290, 150, 50);
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
+			botaoCancelar.setFont(new Font("Arial", Font.BOLD, 18));
 			this.janela.add(botaoSalvar);
 		}
 
@@ -207,16 +201,18 @@ public class TelaDetalhePessoa implements ActionListener {
 		this.janela.add(labelEmail);
 		this.janela.add(valorEmail);
 		this.janela.add(botaoSalvar);
+		this.janela.add(botaoCancelar);
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(500, 325);
+		this.janela.setSize(365, 390);
 		this.janela.setVisible(true);
 		this.janela.setLocationRelativeTo(null);
 		this.janela.setResizable(false);
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
+		botaoCancelar.addActionListener(this);
 	}
 
 
@@ -280,6 +276,9 @@ public class TelaDetalhePessoa implements ActionListener {
 			
 			
 		}
+		
+		if(src == botaoCancelar) janela.dispose();
+		
 	}
 
 	public void mensagemSucessoExclusao() {

@@ -1,6 +1,7 @@
 package view;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -30,18 +31,15 @@ public class TelaIngresso implements ActionListener {
 		janela = new JFrame("Venda de Ingresso");
 		titulo = new JLabel("Cadastro de Venda");
 		proximo = new JButton("Próximo");
-		voltar = new JButton("<-");
-		
-		//Image img = ImageIO.read(getClass().getResource("resources/water.bmp"));
-	    //voltar.setIcon(new ImageIcon(img));
+		voltar = new JButton("Voltar");
 	
 		titulo.setFont(new Font("Arial", Font.BOLD, 30));
 		proximo.setFont(new Font("Arial", Font.BOLD, 18));
-		voltar.setFont(new Font("Arial", Font.BOLD, 16));
+		voltar.setFont(new Font("Arial", Font.BOLD, 18));
 		titulo.setBounds(90, 15, 350, 30);
 	
 		proximo.setBounds(250, 210, 150, 50);
-		voltar.setBounds(50, 210, 60, 50);
+		voltar.setBounds(50, 210, 150, 50);
 	
 		janela.setLayout(null);
 	
