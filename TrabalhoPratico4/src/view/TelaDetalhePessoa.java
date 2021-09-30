@@ -124,30 +124,30 @@ public class TelaDetalhePessoa implements ActionListener {
 
 		} 
 
-		labelPrimNome.setBounds(20, 10, 150, 25);
-		valorPrimNome.setBounds(145, 10, 180, 25);
-		labelData.setBounds(20, 40, 150, 25);
-		valorData.setBounds(145, 40, 180, 25);
-		labelUltNome.setBounds(20, 70, 180, 25);
-		valorUltNome.setBounds(145, 70, 180, 25);		
-		labelCPF.setBounds(20, 100, 150, 25);
-		valorCPF.setBounds(145, 100, 180, 25);
-		labelNumCel.setBounds(20, 130, 150, 25);
-		valorNumCel.setBounds(145, 130, 180, 25);
-		labelEmail.setBounds(20, 160, 150, 25);
-		valorEmail.setBounds(145, 160, 180, 25);
-		labelGenFav.setBounds(20, 190, 150, 25);
-		valorGenFav.setBounds(145, 190, 180, 25);
-		labelQntddFilmesVistos.setBounds(20, 220, 180, 25);
-		valorQntddFilmesVistos.setBounds(145, 220, 180, 25);		
-		labelPlanoAss.setBounds(20, 250, 150, 25);
-		valorPlanoAss.setBounds(145, 250, 180, 25);
-		labelFuncao.setBounds(20, 190, 150, 25);
-		valorFuncao.setBounds(145, 190, 180, 25);
-		labelEndereco.setBounds(20, 220, 150, 25);
-		valorEndereco.setBounds(145, 220, 180, 25);
-		labelSalario.setBounds(20, 250, 150, 25);
-		valorSalario.setBounds(145, 250, 180, 25);
+		labelPrimNome.setBounds(10, 10, 150, 25);
+		valorPrimNome.setBounds(145, 10, 185, 25);
+		labelData.setBounds(10, 40, 150, 25);
+		valorData.setBounds(145, 40, 185, 25);
+		labelUltNome.setBounds(10, 70, 180, 25);
+		valorUltNome.setBounds(145, 70, 185, 25);		
+		labelCPF.setBounds(10, 100, 150, 25);
+		valorCPF.setBounds(145, 100, 185, 25);
+		labelNumCel.setBounds(10, 130, 150, 25);
+		valorNumCel.setBounds(145, 130, 185, 25);
+		labelEmail.setBounds(10, 160, 150, 25);
+		valorEmail.setBounds(145, 160, 185, 25);
+		labelGenFav.setBounds(10, 190, 150, 25);
+		valorGenFav.setBounds(145, 190, 185, 25);
+		labelQntddFilmesVistos.setBounds(10, 220, 180, 25);
+		valorQntddFilmesVistos.setBounds(145, 220, 185, 25);		
+		labelPlanoAss.setBounds(10, 250, 150, 25);
+		valorPlanoAss.setBounds(145, 250, 185, 25);
+		labelFuncao.setBounds(10, 190, 150, 25);
+		valorFuncao.setBounds(145, 190, 185, 25);
+		labelEndereco.setBounds(10, 220, 150, 25);
+		valorEndereco.setBounds(145, 220, 185, 25);
+		labelSalario.setBounds(10, 250, 150, 25);
+		valorSalario.setBounds(145, 250, 185, 25);
 
 		//Coloca os campos relacionados a endereco se aluno
 		if (op == 1 || op == 3 ) {
