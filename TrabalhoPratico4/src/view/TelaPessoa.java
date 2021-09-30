@@ -14,15 +14,17 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	private JButton refreshCliente;
 	private JButton cadastroProf;
 	private JButton refreshProf;
+	private JPanel panel = new JPanel(new BorderLayout());
+	private JScrollPane ScrollPane = new JScrollPane();
 	private JList<String> listaClientesCadastrados;
 	private JList<String> listaFuncionariosCadastrados;
 	private String[] listaNomes = new String[1000];
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
 	
-	public void mostrarDados(int op){
-		cliente.dadosPreCadastradosClientes();
-		funcionario.dadosPreCadastradosFuncionario();
+	public void mostrarDados(int op, ClienteVIP c, Funcionario f){
+		cliente = c;
+		funcionario = f;
 
 		switch (op) {
 		case 1:// Mostrar dados de alunos cadastrados (JList)
@@ -38,9 +40,14 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			refreshCliente.setFont(new Font("Arial", Font.BOLD, 18));
 			listaClientesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
 			titulo.setBounds(90, 15, 350, 30);
-			listaClientesCadastrados.setBounds(40, 50, 400, 140);
-			listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaClientesCadastrados.setVisibleRowCount(10);
+//			listaClientesCadastrados.setBounds(40, 50, 400, 140);
+//			listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//			listaClientesCadastrados.setVisibleRowCount(10);
+			
+			panel.setBounds(40, 50, 400, 140);
+			ScrollPane.setViewportView(listaClientesCadastrados);
+			listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
+	        panel.add(ScrollPane);
 
 			cadastroCliente.setBounds(70, 210, 150, 50);
 			refreshCliente.setBounds(250, 210, 150, 50);
@@ -48,9 +55,10 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			janela.add(listaClientesCadastrados);
+			//janela.add(listaClientesCadastrados);
 			janela.add(cadastroCliente);
 			janela.add(refreshCliente);
+			janela.add(panel);
 
 			janela.setSize(500, 325);
 			janela.setVisible(true);
@@ -77,9 +85,14 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			listaFuncionariosCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
 
 			titulo.setBounds(65, 15, 400, 30);
-			listaFuncionariosCadastrados.setBounds(40, 50, 400, 140);
-			listaFuncionariosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaFuncionariosCadastrados.setVisibleRowCount(10);
+			panel.setBounds(40, 50, 400, 140);
+			ScrollPane.setViewportView(listaFuncionariosCadastrados);
+			listaFuncionariosCadastrados.setLayoutOrientation(JList.VERTICAL);
+	        panel.add(ScrollPane);
+
+//			listaFuncionariosCadastrados.setBounds(40, 50, 400, 140);
+//			listaFuncionariosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//			listaFuncionariosCadastrados.setVisibleRowCount(10);
 
 
 			cadastroProf.setBounds(70, 210, 150, 50);
@@ -88,9 +101,10 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			janela.add(listaFuncionariosCadastrados);
+			//janela.add(listaFuncionariosCadastrados);
 			janela.add(cadastroProf);
 			janela.add(refreshProf);
+			janela.add(panel);
 
 			janela.setSize(500, 325);
 			janela.setVisible(true);
@@ -135,6 +149,19 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		}
 
 	}
+	
+	//Função de atualizar automaticamente;
+	/*public void refresh(ActionEvent  a, JButton save) {
+		Object src = a.getSource();
+		listaNomes = cliente.visualizarNome();
+		listaClientesCadastrados = new JList<String>(listaNomes);
+		
+		if(src == save) {
+			listaClientesCadastrados.setListData(cliente.visualizarNome());			
+			listaClientesCadastrados.updateUI();
+		}
+
+	}*/
 
 	//Captura eventos relacionados ao JList
 	public void valueChanged(ListSelectionEvent e) {

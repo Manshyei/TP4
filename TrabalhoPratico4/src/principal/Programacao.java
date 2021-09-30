@@ -40,6 +40,14 @@ public class Programacao {
 		dadosProg.add(prog5);
 	}
 	
+	public int retornaHora(int pos) {
+		return dadosProg.get(pos).getHorario();
+	}
+	
+	public String retornaDataExib(int pos) {
+		return dadosProg.get(pos).getDataExibicao();
+	}
+	
 	// ------------ GETTERS AND SETTERS ------------ //
 	
 	public int getHorario() {

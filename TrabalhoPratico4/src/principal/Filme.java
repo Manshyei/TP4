@@ -23,7 +23,9 @@ public class Filme {
 	
 	// ---------------- CONSTRUTOR ---------------- // 
 	
-	public Filme(String nomeDoFilme, int duracaoDoFilme, int classificacao, String idiomaDoFilme, String sinopseFilme, String generoFilme, String data_lancamento, int sala_transmissao, Programacao prog) {
+	public Filme(String nomeDoFilme, int duracaoDoFilme, int classificacao, 
+			String idiomaDoFilme, String sinopseFilme, String generoFilme, 
+			String data_lancamento, int sala_transmissao, Programacao prog) {
 		nome = nomeDoFilme;
 		duracao = duracaoDoFilme;
 		classificacaoIndicativa = classificacao;
@@ -84,38 +86,42 @@ public class Filme {
 
 	// Funcao para cadastrar os dados de Filme:
 	
-		public void cadastrar() {
-			String nome, idioma, genero, sinopse, dataLancamento,dataExibicao;
-			int duracao, classificacaoIndicativa, salaTransmissao,horario;
-					
-			System.out.println("Nome do filme: \n");
-			nome = input.nextLine();
-			System.out.println("Idioma do filme: \n");
-			idioma = input.nextLine();
-			System.out.println("Gênero do filme: \n");
-			genero = input.nextLine();
-			System.out.println("Sinopse do filme: \n");
-			sinopse = input.nextLine();
-			System.out.println("Data de lançamento do filme: \n");
-			dataLancamento = input.nextLine();
-			System.out.println("Data de exibição do filme: \n");
-			dataExibicao = input.nextLine();
-			System.out.println("Duração do filme: \n");
-			duracao = ler.nextInt();
-			System.out.println("Classificação indicativa: \n");
-			classificacaoIndicativa = ler.nextInt();
-			System.out.println("Sala de transmissão: \n");
-			salaTransmissao = ler.nextInt();
-			System.out.println("Horário do filme: \n");
-			horario = ler.nextInt();
-			
-			Programacao progaux = new Programacao(horario,dataExibicao);
-			Filme filmeaux = new Filme(nome,duracao,classificacaoIndicativa,idioma,sinopse,genero,dataLancamento,salaTransmissao,progaux);
-			
-			dadosFilmes.add(filmeaux);
-
-			
-		}
+//		public void cadastrar() {
+//			String nome, idioma, genero, sinopse, dataLancamento,dataExibicao;
+//			int duracao, classificacaoIndicativa, salaTransmissao,horario;
+//					
+//			System.out.println("Nome do filme: \n");
+//			nome = input.nextLine();
+//			System.out.println("Idioma do filme: \n");
+//			idioma = input.nextLine();
+//			System.out.println("Gênero do filme: \n");
+//			genero = input.nextLine();
+//			System.out.println("Sinopse do filme: \n");
+//			sinopse = input.nextLine();
+//			System.out.println("Data de lançamento do filme: \n");
+//			dataLancamento = input.nextLine();
+//			System.out.println("Data de exibição do filme: \n");
+//			dataExibicao = input.nextLine();
+//			System.out.println("Duração do filme: \n");
+//			duracao = ler.nextInt();
+//			System.out.println("Classificação indicativa: \n");
+//			classificacaoIndicativa = ler.nextInt();
+//			System.out.println("Sala de transmissão: \n");
+//			salaTransmissao = ler.nextInt();
+//			System.out.println("Horário do filme: \n");
+//			horario = ler.nextInt();
+//			
+//			Programacao progaux = new Programacao(horario,dataExibicao);
+//			Filme filmeaux = new Filme(nome,duracao,classificacaoIndicativa,idioma,sinopse,genero,dataLancamento,salaTransmissao,progaux);
+//			
+//			dadosFilmes.add(filmeaux);
+//
+//			
+//		}
+	
+	public void cadastrar(Filme filme) {
+		dadosFilmes.add(filme);
+	}
 		
 		// Funcao para buscar um filme por nome:
 		public Filme buscar(String nome) {
@@ -129,50 +135,59 @@ public class Filme {
 		
 		// Funcao para editar os dados do filme:
 		
-		public void editar(Filme filme) {
-			
-			int num;
-			
-			do {
-				System.out.println("Selecione a opção desejada:\n"
-						+ "1-Editar o idioma do filme\n"
-						+ "2-Editar a sala de transmissão do filme\n"
-						+ "3-Sair\n");
-						
-						
-				
-				num = ler.nextInt();
-				
-				switch (num) {
-					/// usuário escolhe a opção 1
-					case 1: 
-						System.out.println("Digite o novo idioma:\n");
-						filme.setIdioma(input.nextLine());
-						break;
-					/// usuário escolhe a opção 2
-					case 2:
-						System.out.println("Digite o número da nova sala de transmissão:\n");
-						filme.setSalaTransmissao(input.nextInt());
-						break;
-					/// usuário escolhe a opção 3
-					case 3:
-						System.out.println("Retornando ao menu\n");
-						break;
-					/// opção excessão	
-					default:
-						System.out.println("Não foi escolhida nenhuma opção válida\n"
-										   + "Por favor insira um número novamente");
-						break;
-				}
-			} while (1 > num || num > 3);
-				
+//		public void editar(Filme filme) {
+//			
+//			int num;
+//			
+//			do {
+//				System.out.println("Selecione a opção desejada:\n"
+//						+ "1-Editar o idioma do filme\n"
+//						+ "2-Editar a sala de transmissão do filme\n"
+//						+ "3-Sair\n");
+//						
+//						
+//				
+//				num = ler.nextInt();
+//				
+//				switch (num) {
+//					/// usuário escolhe a opção 1
+//					case 1: 
+//						System.out.println("Digite o novo idioma:\n");
+//						filme.setIdioma(input.nextLine());
+//						break;
+//					/// usuário escolhe a opção 2
+//					case 2:
+//						System.out.println("Digite o número da nova sala de transmissão:\n");
+//						filme.setSalaTransmissao(input.nextInt());
+//						break;
+//					/// usuário escolhe a opção 3
+//					case 3:
+//						System.out.println("Retornando ao menu\n");
+//						break;
+//					/// opção excessão	
+//					default:
+//						System.out.println("Não foi escolhida nenhuma opção válida\n"
+//										   + "Por favor insira um número novamente");
+//						break;
+//				}
+//			} while (1 > num || num > 3);
+//				
+//		}
+		
+		public void editar(Filme filme, int pos) {
+			deletar(pos);
+			cadastrar(filme);
 		}
 		
 		/// ------ Deleta o filme
-		public void deletar(Filme filme) {
-			
-			dadosFilmes.remove(dadosFilmes.indexOf(filme));
-			
+//		public void deletar(Filme filme) {
+//			
+//			dadosFilmes.remove(dadosFilmes.indexOf(filme));
+//			
+//		}
+		
+		public void deletar(int pos) {
+			dadosFilmes.remove(dadosFilmes.get(pos));
 		}
 		
 		public String toString() {	
@@ -195,7 +210,54 @@ public class Filme {
 			
 		}
 		
-
+		public String[] visualizarNome() {
+			String[] var = new String [1000];
+			for(int i = 0; i < dadosFilmes.size(); i ++) {
+				var[i] = dadosFilmes.get(i).getNome();
+				//System.out.println(dadosCliente.get(i).getPrimeiroNome());
+			}
+			return var;
+		}
+		
+	public String retornaNomeFilme(int pos) {
+		return dadosFilmes.get(pos).getNome();
+	}
+	
+	public int retornaDuracao(int pos) {
+		return dadosFilmes.get(pos).getDuracao();
+	}
+	
+	public int retornaClasIndic(int pos) {
+		return dadosFilmes.get(pos).getClassificacaoIndicativa();
+	}
+	
+	public String retornaIdioma(int pos) {
+		return dadosFilmes.get(pos).getIdioma();
+	}
+	
+	public String retornaSinopse(int pos) {
+		return dadosFilmes.get(pos).getSinopse();
+	}
+	
+	public String retornaGenero(int pos) {
+		return dadosFilmes.get(pos).getGenero();
+	}
+	
+	public String retornaDataLanc(int pos) {
+		return dadosFilmes.get(pos).getDataLancamento();
+	}
+	
+	public int retornaSalaTrans(int pos) {
+		return dadosFilmes.get(pos).getSalaTransmissao();
+	}
+	
+	public int retornaHorario(int pos) {
+		return dadosFilmes.get(pos).programacao.retornaHora(pos);
+	}
+	
+	public String retornaDataExib(int pos) {
+		return dadosFilmes.get(pos).programacao.retornaDataExib(pos);
+	}
 		
 	// ------------ GETTERS AND SETTERS ------------ //
 	

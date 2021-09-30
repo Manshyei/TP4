@@ -18,7 +18,9 @@ public class Ingresso {
 	 
 	// ---------------- CONSTRUTOR ---------------- //
 	
-	public Ingresso(String tipo_ingresso, int num_sala, String tipo_sala, int num_cadeira, char letra_cadeira, String nomeDoFilme, String idiomaFilme, int hora, String data_exibicao) {
+	public Ingresso(String tipo_ingresso, int num_sala, String tipo_sala, int num_cadeira, 
+			char letra_cadeira, String nomeDoFilme, String idiomaFilme, int hora, 
+			String data_exibicao) {
 		tipoIngresso = tipo_ingresso;
 		numSala = num_sala;
 		tipoSala = tipo_sala;

@@ -163,7 +163,7 @@ public class ClienteVIP extends Pessoa {
 			
 	}*/
 	
-public void editar(ClienteVIP cliente, int pos) {
+	public void editar(ClienteVIP cliente, int pos) {
 		dadosCliente.get(pos).email = cliente.email;
 		dadosCliente.get(pos).generoFavorito = cliente.generoFavorito;
 		dadosCliente.get(pos).numCelular = cliente.numCelular;

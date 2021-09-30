@@ -16,9 +16,17 @@ public class TelaMenu implements ActionListener {
 	private static JButton ingresso = new JButton("Ingresso");
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario func = new Funcionario();
+	SalaCinema sla = new SalaCinema();
+	VendaIngresso vi = new VendaIngresso();
+	Filme fil = new Filme();
 	//public static ControleDados dados = new ControleDados();
 	
 	public TelaMenu() {
+		cliente.dadosPreCadastradosClientes();
+		func.dadosPreCadastradosFuncionario();
+		sla.dadosPreCadastradosSala();
+		vi.dadosPreCadastradosVendaIngresso();
+		fil.dadosPreCadastradosFilmes();
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 30));
 		clienteVIP.setFont(new Font("Arial", Font.BOLD, 18));
@@ -64,19 +72,19 @@ public class TelaMenu implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == clienteVIP)
-			new TelaPessoa().mostrarDados(1);
+			new TelaPessoa().mostrarDados(1, cliente, func);
 		
 		if(src == funcionario)
-			new TelaPessoa().mostrarDados(2);
-		
-		/*if(src == filme)
-			new TelaFilme().mostrarDados(dados, 3);
+			new TelaPessoa().mostrarDados(2, cliente, func);
 		
 		if(src == sala)
-			new TelaSala().mostrarDados(dados, 4);
+			new TelaSala().mostrarDados(sla);
+		
+		if(src == filme)
+			new TelaFilme().mostrarDados(fil);
 		
 		if(src == ingresso)
-			new TelaIngresso().mostrarDados(dados, 5);*/
+			new TelaIngresso().mostrarDados(vi);
 	}
 }
 

@@ -269,7 +269,6 @@ public class TelaDetalhePessoa implements ActionListener {
 		if(src == botaoExcluir) {
 
 			if (opcao == 3) {//exclui cliente
-				//Testar excluir clientes novos, se sim clientes pre cadastrados n poderao ser excluidos.
 				cliente.deletar(posicao);
 				mensagemSucessoExclusao();
 			}
@@ -278,8 +277,7 @@ public class TelaDetalhePessoa implements ActionListener {
 				funcionario.deletar(posicao);
 				mensagemSucessoExclusao(); 
 			}
-
-
+			
 			
 		}
 	}
