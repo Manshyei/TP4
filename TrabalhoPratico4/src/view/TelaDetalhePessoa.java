@@ -14,6 +14,7 @@ import principal.*;
 
 public class TelaDetalhePessoa implements ActionListener {
 
+	/// Declaração dos componentes da GUI
 	private JFrame janela;
 	private JLabel labelPrimNome = new JLabel("Primeiro Nome: ");
 	private JTextField valorPrimNome;
@@ -42,12 +43,15 @@ public class TelaDetalhePessoa implements ActionListener {
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoCancelar = new JButton("Cancelar");
+	
+	/// Declaração de dados a serem manipulados
 	private String[] novoDado = new String[12];
 	private int posicao;
 	private int opcao;
 	private String s;
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
+	TelaPessoa p = new TelaPessoa();
 	
 	public void criarTelaDetalhePessoa(int op, 
 		TelaPessoa p, ClienteVIP c, Funcionario f, int pos) {
@@ -62,9 +66,12 @@ public class TelaDetalhePessoa implements ActionListener {
 		if (op == 3) s = "Detalhe de Cliente";
 		if (op == 4) s = "Detalhe de Funcionário";
 
+		/// Cria um container
 		janela = new JFrame(s);
 
+		
 		if (op == 1) {
+			/// Cria os componentes do container
 			valorPrimNome = new JTextField(200);
 			valorUltNome = new JTextField(200);
 			valorData = new JTextField(200);
@@ -79,6 +86,7 @@ public class TelaDetalhePessoa implements ActionListener {
 			valorSalario = new JTextField(200);
 			
 		} else if (op == 2) {
+			/// Cria os componentes do container
 			valorPrimNome = new JTextField(200);
 			valorUltNome = new JTextField(200);
 			valorData = new JTextField(200);
@@ -92,7 +100,8 @@ public class TelaDetalhePessoa implements ActionListener {
 			valorEndereco = new JTextField(200);
 			valorSalario = new JTextField(200);
 			
-		} else if (op == 3) { //Preenche dados com dados do cliente clicado
+		} else if (op == 3) {
+			/// Recebe o valor de cada variável
 			valorPrimNome = new JTextField(cliente.retornaPrimNome(posicao), 200);
 			valorUltNome = new JTextField(cliente.retornaUltNome(posicao),200);
 			valorData = new JTextField(cliente.retornaData(posicao), 200);
@@ -107,7 +116,8 @@ public class TelaDetalhePessoa implements ActionListener {
 			valorEndereco = new JTextField(200);
 			valorSalario = new JTextField(200);
 
-		} else if (op == 4) { //Preenche dados com dados do funcionário clicado 
+		} else if (op == 4) { 
+			/// Recebe o valor de cada variável
 			valorPrimNome = new JTextField(funcionario.retornaPrimNome(posicao), 200);
 			valorUltNome = new JTextField(funcionario.retornaUltNome(posicao),200);
 			valorData = new JTextField(funcionario.retornaData(posicao), 200);
@@ -123,7 +133,8 @@ public class TelaDetalhePessoa implements ActionListener {
 			valorPlanoAss = new JTextField(200);
 
 		} 
-
+		
+		/// Realiza o posicionamento dos componentes
 		labelPrimNome.setBounds(10, 10, 150, 25);
 		valorPrimNome.setBounds(145, 10, 185, 25);
 		labelData.setBounds(10, 40, 150, 25);
@@ -149,7 +160,7 @@ public class TelaDetalhePessoa implements ActionListener {
 		labelSalario.setBounds(10, 250, 150, 25);
 		valorSalario.setBounds(145, 250, 185, 25);
 
-		//Coloca os campos relacionados a endereco se aluno
+		/// Coloca os componentes no container caso Cliente
 		if (op == 1 || op == 3 ) {
 			this.janela.add(labelGenFav);
 			this.janela.add(valorGenFav);
@@ -160,7 +171,7 @@ public class TelaDetalhePessoa implements ActionListener {
 
 		}
 
-		//Coloca campos relacionados a valor hora/aula se professor
+		/// Coloca os componentes no container caso Funcionário
 		if (op == 2 || op == 4) {
 			this.janela.add(labelFuncao);
 			this.janela.add(valorFuncao);
@@ -170,24 +181,38 @@ public class TelaDetalhePessoa implements ActionListener {
 			this.janela.add(valorSalario);
 		}
 
-		//Coloca botoes de excluir e salvar
+		/// Caso de alteração/remoção
 		if (op == 3 || op == 4) {
+			
+			/// Realiza o posicionamento dos componentes exclusivos.
 			botaoSalvar.setBounds(180, 290, 150, 50);
 			botaoExcluir.setBounds(10, 290, 150, 50);
+			
+			/// Realiza a seleção de fontes para os botões "salvar" e "excluir"
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoExcluir.setFont(new Font("Arial", Font.BOLD, 18));
+			
+			/// Coloca os componentes exclusivos no container
 			this.janela.add(botaoExcluir);
 			this.janela.add(botaoSalvar);
 		}
 		
+		/// Caso de cadastramento
 		if (op == 1 || op  == 2) {
+			
+			/// Realiza o posicionamento dos componentes exclusivos.
 			botaoSalvar.setBounds(180, 290, 150, 50);
 			botaoCancelar.setBounds(10, 290, 150, 50);
+			
+			/// Realiza a seleção de fontes para os botões "salvar" e "cancelar"
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoCancelar.setFont(new Font("Arial", Font.BOLD, 18));
+			
+			/// Coloca o componente exclusivo no container
 			this.janela.add(botaoSalvar);
 		}
 
+		/// Coloca os componentes no container
 		this.janela.add(labelPrimNome);
 		this.janela.add(valorPrimNome);
 		this.janela.add(labelCPF);
@@ -205,17 +230,19 @@ public class TelaDetalhePessoa implements ActionListener {
 
 		this.janela.setLayout(null);
 
+		/// Dados do container
 		this.janela.setSize(365, 390);
 		this.janela.setVisible(true);
 		this.janela.setLocationRelativeTo(null);
 		this.janela.setResizable(false);
 
+		/// Detecção de eventos
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoCancelar.addActionListener(this);
 	}
 
-
+	/// Detecção de eventos relacionados aos dados da Pessoa
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if(src == botaoSalvar) {				
@@ -232,43 +259,53 @@ public class TelaDetalhePessoa implements ActionListener {
 				novoDado[10] = valorEndereco.getText();
 				novoDado[11] = valorSalario.getText();
 
+				/// Caso de cadastramento
 				if (opcao == 1) {
 					ClienteVIP novoCliente = new ClienteVIP(novoDado[0], novoDado[3], 
 							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[6], 
 							Integer.parseInt(novoDado[7]), novoDado[8]);
 					cliente.cadastrar(novoCliente);
 					
-				} else if (opcao == 2){
+				} 
+				
+				/// Caso de cadastramento
+				else if (opcao == 2){
 					Funcionario novoFuncionario = new Funcionario(novoDado[0], novoDado[3], 
 							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[9], 
 							novoDado[10], Double.parseDouble(novoDado[11]));
 					funcionario.cadastrar(novoFuncionario);
-					
-				} else if (opcao == 3) {
+				} 
+				
+				/// Caso de alteração/remoção
+				else if (opcao == 3) {
 					ClienteVIP attCliente = new ClienteVIP(novoDado[0], novoDado[3], 
 							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[6], 
 							Integer.parseInt(novoDado[7]), novoDado[8]);
 					cliente.editar(attCliente, posicao);
-					
-				} else if (opcao == 4) {
+				} 
+				
+				/// Caso de alteração/remoção
+				else if (opcao == 4) {
 					Funcionario attFuncionario = new Funcionario(novoDado[0], novoDado[3], 
 							novoDado[4], novoDado[1], novoDado[2], novoDado[5], novoDado[9], 
 							novoDado[10], Double.parseDouble(novoDado[11]));
-					funcionario.editar(attFuncionario, posicao);
-					
+					funcionario.editar(attFuncionario, posicao);	
 				}
 				mensagemSucessoCadastro();
 
 			
 		}
 
+		/// Exclui a pessoa
 		if(src == botaoExcluir) {
 
-			if (opcao == 3) {//exclui cliente
+			/// Caso cliente
+			if (opcao == 3) {
 				cliente.deletar(posicao);
 				mensagemSucessoExclusao();
 			}
-				
+			
+			/// Caso funcionário
 			if (opcao == 4){ //exclui professor
 				funcionario.deletar(posicao);
 				mensagemSucessoExclusao(); 
@@ -277,6 +314,7 @@ public class TelaDetalhePessoa implements ActionListener {
 			
 		}
 		
+		/// Cancela o cadastramento e fecha a janela
 		if(src == botaoCancelar) janela.dispose();
 		
 	}

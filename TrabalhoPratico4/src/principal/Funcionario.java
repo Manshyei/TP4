@@ -99,14 +99,31 @@ public class Funcionario extends Pessoa {
 			dadosFuncionario.add(funcionario);
 		}
 		
+		public void cadastrarvazio() {
+			Funcionario func = new Funcionario("", "", "", "", "", "", "", "", 0);
+			dadosFuncionario.add(func);
+		}
+		
+		public void produtoNaoEncontrado() {
+			Funcionario func = new Funcionario("Não foram encontrados resultados...", "", "", "", "", "", "", "", 0);
+			dadosFuncionario.add(func);
+		}
+		
 		// Funcao para buscar um Funcionario Especifico por CPF:
 		public Funcionario buscar(String cpf) {
 			for(int i = 0; i < dadosFuncionario.size(); i ++) 
 				if(cpf.equals(dadosFuncionario.get(i).getCpf())) {
-					System.out.println(dadosFuncionario.get(i).toString());
 					return dadosFuncionario.get(i);
 				}
 			return null;
+		}
+		
+		public int retornaPos(String cpf) {
+			for(int i = 0; i < dadosFuncionario.size(); i ++) 
+				if(cpf.equals(dadosFuncionario.get(i).getCpf())) {
+					return i;
+				}
+			return -1;
 		}
 		
 		// Funcao para editar os dados de Cliente:
@@ -161,11 +178,14 @@ public class Funcionario extends Pessoa {
 		}*/
 		
 		public void editar(Funcionario funcionario, int pos) {
-			dadosFuncionario.get(pos).email = funcionario.email;
-			dadosFuncionario.get(pos).funcao = funcionario.funcao;
-			dadosFuncionario.get(pos).numCelular = funcionario.numCelular;
-			dadosFuncionario.get(pos).salario = funcionario.salario;
-			dadosFuncionario.get(pos).endereco = funcionario.endereco;
+			deletar(pos);
+			cadastrar(funcionario);
+			
+//			dadosFuncionario.get(pos).email = funcionario.email;
+//			dadosFuncionario.get(pos).funcao = funcionario.funcao;
+//			dadosFuncionario.get(pos).numCelular = funcionario.numCelular;
+//			dadosFuncionario.get(pos).salario = funcionario.salario;
+//			dadosFuncionario.get(pos).endereco = funcionario.endereco;
 		}
 		
 		

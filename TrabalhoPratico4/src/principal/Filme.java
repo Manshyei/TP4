@@ -124,10 +124,27 @@ public class Filme {
 		public Filme buscar(String nome) {
 			for(int i = 0; i < dadosFilmes.size(); i ++) 
 				if(nome.equals(dadosFilmes.get(i).getNome())) {
-					System.out.println(dadosFilmes.get(i).toString());
 					return dadosFilmes.get(i);
 				}
 			return null;
+		}
+		
+		public void cadastrarvazio() {
+			Filme filme = new Filme("",0,0,"","", "","",0, 0,"");
+			dadosFilmes.add(filme);
+		}
+		
+		public void produtoNaoEncontrado() {
+			Filme filme = new Filme("Não foram encontrados resultados...",0,0,"","", "","",0, 0,"");
+			dadosFilmes.add(filme);
+		}
+		
+		public int retornaPos(String nome) {
+			for(int i = 0; i < dadosFilmes.size(); i ++) 
+				if(nome.equals(dadosFilmes.get(i).getNome())) {
+					return i;
+				}
+			return -1;
 		}
 		
 		// Funcao para editar os dados do filme:

@@ -126,13 +126,16 @@ public class SalaCinema {
 //			}
 			
 			public void editar(SalaCinema sala, int pos) {
-				dadosSala.get(pos).numSala = sala.numSala;
-				dadosSala.get(pos).tipoSala = sala.tipoSala;
-				dadosSala.get(pos).qntddCadeiras = sala.qntddCadeiras;
-				dadosSala.get(pos).formato = sala.formato;
-				dadosSala.get(pos).qnddLinhasCadeiras = sala.qnddLinhasCadeiras;
-				dadosSala.get(pos).qnddColunasCadeiras = sala.qnddColunasCadeiras;
-				dadosSala.get(pos).cadeiraVaga = sala.cadeiraVaga;
+				deletar(pos);
+				cadastrar(sala);
+				
+//				dadosSala.get(pos).numSala = sala.numSala;
+//				dadosSala.get(pos).tipoSala = sala.tipoSala;
+//				dadosSala.get(pos).qntddCadeiras = sala.qntddCadeiras;
+//				dadosSala.get(pos).formato = sala.formato;
+//				dadosSala.get(pos).qnddLinhasCadeiras = sala.qnddLinhasCadeiras;
+//				dadosSala.get(pos).qnddColunasCadeiras = sala.qnddColunasCadeiras;
+//				dadosSala.get(pos).cadeiraVaga = sala.cadeiraVaga;
 			}
 
 //			public void deletar(SalaCinema sala) {

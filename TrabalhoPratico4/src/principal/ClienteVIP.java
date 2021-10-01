@@ -61,9 +61,6 @@ public class ClienteVIP extends Pessoa {
 
 	}
 	
-	public void retornaDados() {
-		
-	}
 
 	
 	// ------------------ METODOS ------------------- //
@@ -99,8 +96,16 @@ public class ClienteVIP extends Pessoa {
 	}*/
 	
 	public void cadastrar(ClienteVIP cliente) {
-		if (cliente == null)
-			cliente = new ClienteVIP("Não foram encontrados resultados", "", "", "", "", "", "", 0, "");
+		dadosCliente.add(cliente);
+	}
+	
+	public void cadastrarvazio() {
+		ClienteVIP cliente = new ClienteVIP("", "", "", "", "", "", "", 0, "");
+		dadosCliente.add(cliente);
+	}
+	
+	public void produtoNaoEncontrado() {
+		ClienteVIP cliente = new ClienteVIP("Não foram encontrados resultados...", "", "", "", "", "", "", 0, "");
 		dadosCliente.add(cliente);
 	}
 	
@@ -111,6 +116,14 @@ public class ClienteVIP extends Pessoa {
 				return dadosCliente.get(i);
 			}
 		return null;
+	}
+	
+	public int retornaPos(String cpf) {
+		for(int i = 0; i < dadosCliente.size(); i ++) 
+			if(cpf.equals(dadosCliente.get(i).getCpf())) {
+				return i;
+			}
+		return -1;
 	}
 	
 	// Funcao para editar os dados de Cliente:
@@ -165,11 +178,14 @@ public class ClienteVIP extends Pessoa {
 	}*/
 	
 	public void editar(ClienteVIP cliente, int pos) {
-		dadosCliente.get(pos).email = cliente.email;
-		dadosCliente.get(pos).generoFavorito = cliente.generoFavorito;
-		dadosCliente.get(pos).numCelular = cliente.numCelular;
-		dadosCliente.get(pos).planoAssinatura = cliente.planoAssinatura;
-		dadosCliente.get(pos).qntddFilmesVistos = cliente.qntddFilmesVistos;
+		deletar(pos);
+		cadastrar(cliente);
+		
+//		dadosCliente.get(pos).email = cliente.email;
+//		dadosCliente.get(pos).generoFavorito = cliente.generoFavorito;
+//		dadosCliente.get(pos).numCelular = cliente.numCelular;
+//		dadosCliente.get(pos).planoAssinatura = cliente.planoAssinatura;
+//		dadosCliente.get(pos).qntddFilmesVistos = cliente.qntddFilmesVistos;
 	}
 	
 	/*public void deletar(ClienteVIP cliente) {

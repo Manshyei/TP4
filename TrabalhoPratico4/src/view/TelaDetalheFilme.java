@@ -13,47 +13,39 @@ import principal.*;
 
 public class TelaDetalheFilme implements ActionListener {
 	
+	/// Declaração dos componentes da GUI
 	private JFrame janela;
-	
 	private JLabel labelNomeFilme = new JLabel("Nome do Filme: ");
 	private JTextField valorNomeFilme;
-	
 	private JLabel labelDurFilme = new JLabel("Duração do Filme: ");
 	private JTextField valorDurFilme;
-	
 	private JLabel labelClasIndic = new JLabel("Classificação Indicativa: ");
 	private JTextField valorClasIndic;
-	
 	private JLabel labelIdioma = new JLabel("Idioma do Filme: ");
 	private JTextField valorIdioma;
-	
 	private JLabel labelSinopse = new JLabel("Sinopse: ");
 	private JTextField valorSinopse;
-	
 	private JLabel labelGenero = new JLabel("Gênero: ");
 	private JTextField valorGenero;
-	
 	private JLabel labelDataLanc = new JLabel("Data de Lançamento: ");
 	private JTextField valorDataLanc;
-	
 	private JLabel labelSalaTrans = new JLabel("Sala de Transmissão: ");
 	private JTextField valorSalaTrans;
-	
 	private JLabel labelHora = new JLabel("Horário de Exibição: ");
 	private JTextField valorHora;
-	
 	private JLabel labelDataExib = new JLabel("Data de Exibição: ");
 	private JTextField valorDataExib;
-	
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoCancelar = new JButton("Cancelar");
 
+	/// Declaração de dados a serem manipulados
 	private String[] novoDado = new String[11];
 	private int posicao;
 	private int opcao;
 	private String s;
 	Filme filme = new Filme();
+	
 	
 	public void criarTelaDetalheFilme(int op, 
 		TelaFilme p, Filme f, int pos) {
@@ -62,12 +54,18 @@ public class TelaDetalheFilme implements ActionListener {
 		this.posicao = pos;
 		filme = f;
 
+		/* "op" é uma variável que define se o programa está trabalhando
+		com o cadastro de filmes, se op = 1, ou com alteração/exclusão
+		de filmes, se op = 2.                                           */ 
+		
 		if (op == 1) s = "Cadastro do Filme";
 		if (op == 2) s = "Detalhe do Filme";
 
+		/// Cria um container
 		janela = new JFrame(s);
 
 		if (op == 1) {
+			/// Cria os componentes do container
 			valorNomeFilme = new JTextField(200);
 			valorDurFilme = new JTextField(200);
 			valorClasIndic = new JTextField(200);
@@ -79,7 +77,8 @@ public class TelaDetalheFilme implements ActionListener {
 			valorHora = new JTextField(200);
 			valorDataExib = new JTextField(200);
 			
-		} else if (op == 2) { //Preenche dados com dados do sala clicado
+		} else if (op == 2) { 
+			/// Cria os componentes do container
 			valorNomeFilme = new JTextField(filme.retornaNomeFilme(posicao), 200);
 			valorDurFilme = new JTextField(String.valueOf(filme.retornaDuracao(posicao)),200);
 			valorClasIndic = new JTextField(String.valueOf(filme.retornaClasIndic(posicao)), 200);
@@ -92,7 +91,8 @@ public class TelaDetalheFilme implements ActionListener {
 			valorDataExib = new JTextField(filme.retornaDataExib(posicao), 200);
 
 		} 
-
+		
+		/// Realiza o posicionamento dos componentes
 		labelNomeFilme.setBounds(10, 10, 150, 25);
 		valorNomeFilme.setBounds(145, 10, 180, 25);
 		labelClasIndic.setBounds(10, 40, 150, 25);
@@ -114,25 +114,38 @@ public class TelaDetalheFilme implements ActionListener {
 		labelDataExib.setBounds(10, 280, 150, 25);
 		valorDataExib.setBounds(145, 280, 180, 25);
 
-		//Coloca botoes de excluir e salvar
+		/// Caso de alteração/remoção
 		if (op == 2) {
+			
+			/// Realiza o posicionamento dos componentes exclusivos.
 			botaoSalvar.setBounds(175, 320, 150, 50);
 			botaoExcluir.setBounds(10, 320, 150, 50);
+			
+			/// Realiza a seleção de fontes para os botões "salvar" e "excluir"
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoExcluir.setFont(new Font("Arial", Font.BOLD, 18));
+			
+			/// Coloca os componentes exclusivos no container
 			this.janela.add(botaoExcluir);
 			this.janela.add(botaoSalvar);
 		}
 		
+		/// Caso de cadastramento
 		if (op == 1) {
+			/// Realiza o posicionamento dos componentes exclusivos.
 			botaoSalvar.setBounds(175, 320, 150, 50);
 			botaoCancelar.setBounds(10, 320, 150, 50);
+			
+			/// Realiza a seleção de fontes para os botões "salvar" e "cancelar"
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoCancelar.setFont(new Font("Arial", Font.BOLD, 18));
+			
+			/// Coloca os componentes exclusivos no container
 			this.janela.add(botaoSalvar);
 			this.janela.add(botaoCancelar);
 		}
 
+		/// Coloca os componentes no container
 		this.janela.add(labelNomeFilme);
 		this.janela.add(valorNomeFilme);
 		this.janela.add(labelIdioma);
@@ -153,23 +166,24 @@ public class TelaDetalheFilme implements ActionListener {
 		this.janela.add(valorHora);
 		this.janela.add(labelDataExib);
 		this.janela.add(valorDataExib);
-
 		this.janela.add(botaoSalvar);
 		
 
 		this.janela.setLayout(null);
 
+		/// Dados do container
 		this.janela.setSize(365, 420);
 		this.janela.setVisible(true);
 		this.janela.setLocationRelativeTo(null);
 		this.janela.setResizable(false);
 
+		/// Detecção de eventos
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoCancelar.addActionListener(this);
 	}
 
-
+	/// Detecção de eventos relacionados aos dados do filme
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if(src == botaoSalvar) {				
@@ -184,6 +198,7 @@ public class TelaDetalheFilme implements ActionListener {
 				novoDado[8] = valorHora.getText();
 				novoDado[9] = valorDataExib.getText();
 
+				/// Caso de cadastramento
 				if (opcao == 1) {	
 					Filme novoFilme = new Filme(novoDado[0], Integer.parseInt(novoDado[3]), 
 							Integer.parseInt(novoDado[4]), novoDado[1], novoDado[5], 
@@ -191,8 +206,10 @@ public class TelaDetalheFilme implements ActionListener {
 							Integer.parseInt(novoDado[8]), novoDado[9]);
 					
 					filme.cadastrar(novoFilme);
-					
-				} else if (opcao == 2) {
+				}
+				
+				/// Caso de alteração/remoção
+				else if (opcao == 2) {
 					Filme attFilme = new Filme(novoDado[0], Integer.parseInt(novoDado[3]), 
 							Integer.parseInt(novoDado[4]), novoDado[1], novoDado[5], 
 							novoDado[2], novoDado[6], Integer.parseInt(novoDado[7]), 
@@ -203,13 +220,15 @@ public class TelaDetalheFilme implements ActionListener {
 				
 		}
 
+		/// Exclui o filme
 		if(src == botaoExcluir) {
-			if (opcao == 2) {//exclui sala
+			if (opcao == 2) {
 				filme.deletar(posicao);
 				mensagemSucessoExclusao();
 			}
 		}
 		
+		/// Cancela o cadastramento e fecha a janela
 		if(src == botaoCancelar) janela.dispose();
 	}
 
@@ -233,7 +252,7 @@ public class TelaDetalheFilme implements ActionListener {
 				JOptionPane.ERROR_MESSAGE);
 	}
 
-	public void mensagemErroExclusaoAluno() {
+	public void mensagemErroExclusao() {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
 				+ "Verifique se o aluno está matriculado\n"
 				+ "em alguma disciplina. Se sim, cancele\n "

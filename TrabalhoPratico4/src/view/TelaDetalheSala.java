@@ -13,6 +13,7 @@ import principal.*;
 
 public class TelaDetalheSala implements ActionListener {
 
+	/// Declaração dos componentes da GUI
 	private JFrame janela;
 	private JLabel labelNumSala = new JLabel("Número da Sala: ");
 	private JTextField valorNumSala;
@@ -31,6 +32,8 @@ public class TelaDetalheSala implements ActionListener {
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoCancelar = new JButton("Cancelar");
 	private JButton botaoSalvar = new JButton("Salvar");
+	
+	/// Declaração de dados a serem manipulados
 	private String[] novoDado = new String[8];
 	private int posicao;
 	private int opcao;
@@ -47,9 +50,13 @@ public class TelaDetalheSala implements ActionListener {
 		if (op == 1) s = "Cadastro de Sala";
 		if (op == 2) s = "Detalhe de Sala";
 
+		/// Cria um container
 		janela = new JFrame(s);
 
+		
+		/// Caso de cadastramento
 		if (op == 1) {
+			/// Cria os componentes do container
 			valorNumSala = new JTextField(200);
 			valorTipoSala = new JTextField(200);
 			valorQntddCadeiras = new JTextField(200);
@@ -58,7 +65,10 @@ public class TelaDetalheSala implements ActionListener {
 			valorQntddLinhas = new JTextField(200);
 			valorCadeiraVaga = new JTextField(200);	
 			
-		} else if (op == 2) { //Preenche dados com dados do sala clicado
+		} 
+		/// Caso de alteração/remoção
+		else if (op == 2) { 
+			/// Recebe o valor de cada variável
 			valorNumSala = new JTextField(sala.retornaNumSala(posicao), 200);
 			valorTipoSala = new JTextField(sala.retornaTipoSala(posicao),200);
 			valorQntddCadeiras = new JTextField(String.valueOf(sala.retornaQntddCadeiras(posicao)), 200);
@@ -68,7 +78,8 @@ public class TelaDetalheSala implements ActionListener {
 			valorCadeiraVaga = new JTextField(String.valueOf(sala.retornaCadeiraVaga(posicao)), 200);	
 
 		}
-
+		
+		/// Realiza o posicionamento dos componentes
 		labelNumSala.setBounds(10, 10, 150, 25);
 		valorNumSala.setBounds(145, 10, 185, 25);
 		labelQntddCadeiras.setBounds(10, 40, 150, 25);
@@ -84,24 +95,38 @@ public class TelaDetalheSala implements ActionListener {
 		labelCadeiraVaga.setBounds(10, 190, 150, 25);
 		valorCadeiraVaga.setBounds(145, 190, 185, 25);
 
-		//Coloca botoes de excluir e salvar
+		/// Caso de alteração/remoção
 		if (op == 2) {
+			
+			/// Realiza o posicionamento dos componentes exclusivos.
 			botaoSalvar.setBounds(180, 198, 150, 50);
 			botaoExcluir.setBounds(10, 198, 150, 50);
+			
+			/// Realiza a seleção de fontes para os botões "salvar" e "excluir"
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoExcluir.setFont(new Font("Arial", Font.BOLD, 18));
+			
+			/// Coloca os componentes exclusivos no container
 			this.janela.add(botaoExcluir);
 			this.janela.add(botaoSalvar);
 		}
 		
+		/// Caso de cadastramento
 		if (op == 1) {
+			
+			/// Realiza o posicionamento dos componentes exclusivos.
 			botaoSalvar.setBounds(180, 198, 150, 50);
 			botaoCancelar.setBounds(10, 198, 150, 50);
+			
+			/// Realiza a seleção de fontes para os botões "salvar" e "cancelar"
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoCancelar.setFont(new Font("Arial", Font.BOLD, 18));
+			
+			/// Coloca o componente exclusivo no container
 			this.janela.add(botaoSalvar);
 		}
 
+		/// Coloca os componentes no container
 		this.janela.add(labelNumSala);
 		this.janela.add(valorNumSala);
 		this.janela.add(labelFormSala);
@@ -119,17 +144,20 @@ public class TelaDetalheSala implements ActionListener {
 
 		this.janela.setLayout(null);
 
+		/// Dados do container
 		this.janela.setSize(365, 300);
 		this.janela.setVisible(true);
 		this.janela.setLocationRelativeTo(null);
 		this.janela.setResizable(false);
 
+		/// Detecção de eventos
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoCancelar.addActionListener(this);
 	}
 
 
+	/// Detecção de eventos relacionados aos dados do filme
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if(src == botaoSalvar) {				
@@ -141,6 +169,7 @@ public class TelaDetalheSala implements ActionListener {
 				novoDado[5] = valorQntddLinhas.getText();
 				novoDado[6] = valorCadeiraVaga.getText();
 
+				/// Caso de cadastramento
 				if (opcao == 1) {
 					SalaCinema novasala = new SalaCinema(novoDado[0], novoDado[3], 
 							Integer.parseInt(novoDado[4]), novoDado[1], Integer.parseInt(novoDado[5]), 
@@ -148,7 +177,10 @@ public class TelaDetalheSala implements ActionListener {
 					
 					sala.cadastrar(novasala);
 					
-				} else if (opcao == 2) {
+				} 
+				
+				/// Caso de alteração/remoção
+				else if (opcao == 2) {
 					SalaCinema attsala = new SalaCinema(novoDado[0], novoDado[3], 
 							Integer.parseInt(novoDado[4]), novoDado[1], Integer.parseInt(novoDado[5]), 
 							Integer.parseInt(novoDado[2]), Boolean.valueOf(novoDado[6]));
@@ -157,14 +189,16 @@ public class TelaDetalheSala implements ActionListener {
 				mensagemSucessoCadastro();
 				
 		}
-
+		
+		/// Exclui a sala
 		if(src == botaoExcluir) {
-			if (opcao == 2) {//exclui sala
+			if (opcao == 2) {
 				sala.deletar(posicao);
 				mensagemSucessoExclusao();
 			}
 		}
 		
+		/// Cancela o cadastramento e fecha a janela
 		if(src == botaoCancelar) janela.dispose();
 		
 	}

@@ -16,6 +16,10 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	private JButton cadastroFuncionario;
 	private JButton refreshFuncionario;
 	private JButton voltar;
+	private JButton pesquisaCliente;
+	private JButton pesquisaFuncionario;
+	private JButton interrogacao;
+	private JTextField campoBusca;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane ScrollPane = new JScrollPane();
 	
@@ -25,6 +29,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	
 	/// Declaração de dados a serem manipulados
 	private String[] listaNomes = new String[1000];
+	private String cpf;
+	private int p;
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
 	
@@ -50,7 +56,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroCliente = new JButton("Cadastrar");
 			refreshCliente = new JButton("Atualizar Lista");
 			voltar = new JButton("Voltar");
-
+			pesquisaCliente = new JButton("Buscar");
+			interrogacao = new JButton("?");
+			campoBusca = new JTextField(200);
 			
 			/// Realiza a seleção de fontes para cada um dos componentes
 			titulo.setFont(new Font("Arial", Font.BOLD, 30));
@@ -58,6 +66,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			refreshCliente.setFont(new Font("Arial", Font.BOLD, 17));
 			listaClientesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
 			voltar.setFont(new Font("Arial", Font.BOLD, 17));
+			pesquisaCliente.setFont(new Font("Arial", Font.BOLD, 15));
+			interrogacao.setFont(new Font("Arial", Font.BOLD, 20));
 
 			/// Realiza o posicionamento dos componentes
 			titulo.setBounds(90, 15, 350, 30);
@@ -65,6 +75,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroCliente.setBounds(166, 280, 150, 50);
 			refreshCliente.setBounds(326, 280, 150, 50);
 			voltar.setBounds(7, 280, 150, 50);
+			pesquisaCliente.setBounds(290, 70, 100, 25);
+			interrogacao.setBounds(425, 50, 50, 50);
+			campoBusca.setBounds(90, 70, 185, 25);
 			ScrollPane.setViewportView(listaClientesCadastrados);
 			listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
 	        panel.add(ScrollPane);
@@ -78,6 +91,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			janela.add(refreshCliente);
 			janela.add(panel);
 			janela.add(voltar);
+			janela.add(pesquisaCliente);
+			janela.add(interrogacao);
+			janela.add(campoBusca);
 
 			/// Dados do container
 			janela.setSize(500, 390);
@@ -89,6 +105,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroCliente.addActionListener(this);
 			refreshCliente.addActionListener(this);
 			voltar.addActionListener(this);
+			pesquisaCliente.addActionListener(this);
+			interrogacao.addActionListener(this);
 			listaClientesCadastrados.addListSelectionListener(this);
 			
 
@@ -105,6 +123,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroFuncionario = new JButton("Cadastrar");
 			refreshFuncionario = new JButton("Atualizar Lista");
 			voltar = new JButton("Voltar");
+			pesquisaFuncionario = new JButton("Buscar");
+			interrogacao = new JButton("?");
+			campoBusca = new JTextField(200);
 
 			/// Realiza a seleção de fontes para cada um dos componentes
 			titulo.setFont(new Font("Arial", Font.BOLD, 30));
@@ -112,6 +133,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			refreshFuncionario.setFont(new Font("Arial", Font.BOLD, 17));
 			listaFuncionariosCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
 			voltar.setFont(new Font("Arial", Font.BOLD, 17));
+			pesquisaFuncionario.setFont(new Font("Arial", Font.BOLD, 15));
+			interrogacao.setFont(new Font("Arial", Font.BOLD, 20));
 
 			/// Realiza o posicionamento dos componentes
 			titulo.setBounds(65, 15, 400, 30);
@@ -122,7 +145,10 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroFuncionario.setBounds(166, 280, 150, 50);
 			refreshFuncionario.setBounds(326, 280, 150, 50);
 			voltar.setBounds(7, 280, 150, 50);
-
+			pesquisaFuncionario.setBounds(290, 70, 100, 25);
+			interrogacao.setBounds(425, 50, 50, 50);
+			campoBusca.setBounds(90, 70, 185, 25);
+			
 			janela.setLayout(null);
 
 			
@@ -131,7 +157,10 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			janela.add(cadastroFuncionario);
 			janela.add(refreshFuncionario);
 			janela.add(voltar);
+			janela.add(pesquisaFuncionario);
+			janela.add(interrogacao);
 			janela.add(panel);
+			janela.add(campoBusca);
 
 			/// Dados do container
 			janela.setSize(500, 390);
@@ -143,6 +172,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroFuncionario.addActionListener(this);
 			refreshFuncionario.addActionListener(this);
 			voltar.addActionListener(this);
+			pesquisaFuncionario.addActionListener(this);
+			interrogacao.addActionListener(this);
 			listaFuncionariosCadastrados.addListSelectionListener(this);
 			
 			break;
@@ -160,8 +191,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 		
 		/// Cadastro de cliente
-		if(src == cadastroCliente)
+		if(src == cadastroCliente) {
 			new TelaDetalhePessoa().criarTelaDetalhePessoa(1, this, cliente, funcionario, 0);
+		}
 
 		/// Cadastro de funcionário
 		if(src == cadastroFuncionario)
@@ -181,21 +213,47 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		
 		/// Volta para a janela anterior e fecha a atual
 		if (src == voltar ) janela.dispose();
-
-	}
-	
-	/// Função de atualizar automaticamente(UNFINISHED);
-	/*public void refresh(ActionEvent  a, JButton save) {
-		Object src = a.getSource();
-		listaNomes = cliente.visualizarNome();
-		listaClientesCadastrados = new JList<String>(listaNomes);
 		
-		if(src == save) {
-			listaClientesCadastrados.setListData(cliente.visualizarNome());			
-			listaClientesCadastrados.updateUI();
+		/// Mecanismo de pesquisa para cliente;
+		if (src == pesquisaCliente) {
+			ClienteVIP c = new ClienteVIP();
+			cpf = campoBusca.getText();
+			p = cliente.retornaPos(cpf);
+			if (p == -1) {
+				c.produtoNaoEncontrado();
+				listaClientesCadastrados.setListData(c.visualizarNome());
+				listaClientesCadastrados.updateUI();
+			}
+			else {
+				for (int i = 0; i < p; i ++) c.cadastrarvazio();
+				c.cadastrar(cliente.buscar(cpf));
+				listaClientesCadastrados.setListData(c.visualizarNome());
+				listaClientesCadastrados.updateUI();
+			}
 		}
-
-	}*/
+		
+		/// Mecanismo de pesquisa para funcionario;
+		if (src == pesquisaFuncionario) {
+			Funcionario f = new Funcionario();
+			cpf = campoBusca.getText();
+			p = funcionario.retornaPos(cpf);
+			if (p == -1) {
+				f.produtoNaoEncontrado();
+				listaFuncionariosCadastrados.setListData(f.visualizarNome());
+				listaFuncionariosCadastrados.updateUI();
+			}
+			else {
+				for (int i = 0; i < p; i ++) f.cadastrarvazio();
+				f.cadastrar(funcionario.buscar(cpf));
+				listaFuncionariosCadastrados.setListData(f.visualizarNome());
+				listaFuncionariosCadastrados.updateUI();
+			
+			}
+		}
+		
+		if (src == interrogacao) mensagemDuvida();
+			
+	}
 
 	/// Detecção de eventos relacionados à lista de clientes ou funcionários
 	public void valueChanged(ListSelectionEvent e) {
@@ -212,6 +270,11 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			new TelaDetalhePessoa().criarTelaDetalhePessoa(4, this, cliente, funcionario,
 					listaFuncionariosCadastrados.getSelectedIndex());
 		}
+	}
+	
+	public void mensagemDuvida() {
+		JOptionPane.showMessageDialog(null, "Ajuda", null, 
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }
