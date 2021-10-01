@@ -16,6 +16,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 	private JButton refreshSala;
 	private JButton voltar;
 	private JButton pesquisa;
+	private JButton interrogacao;
 	private JTextField campoBusca;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane ScrollPane = new JScrollPane();
@@ -40,6 +41,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		refreshSala = new JButton("Atualizar Lista");
 		voltar = new JButton("Voltar");
 		pesquisa = new JButton("Buscar");
+		interrogacao = new JButton("?");
 	
 		/// Realiza a seleção de fontes para cada um dos componentes
 		titulo.setFont(new Font("Arial", Font.BOLD, 30));
@@ -47,6 +49,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		refreshSala.setFont(new Font("Arial", Font.BOLD, 17));
 		voltar.setFont(new Font("Arial", Font.BOLD, 17));
 		pesquisa.setFont(new Font("Arial", Font.BOLD, 15));
+		interrogacao.setFont(new Font("Arial", Font.BOLD, 20));
 		listaSalasCadastradas.setFont(new Font("Arial", Font.BOLD, 15));
 		
 		/// Realiza o posicionamento dos componentes
@@ -54,8 +57,9 @@ public class TelaSala implements ActionListener, ListSelectionListener {
         cadastroSala.setBounds(166, 280, 150, 50);
 		refreshSala.setBounds(326, 280, 150, 50);
 		voltar.setBounds(7, 280, 150, 50);
-		pesquisa.setBounds(290, 70, 100, 25);
-		campoBusca.setBounds(90, 70, 185, 25);
+		pesquisa.setBounds(260, 70, 100, 25);
+		campoBusca.setBounds(60, 70, 185, 25);
+		interrogacao.setBounds(370, 70, 50, 25);
 		panel.setBounds(40, 110, 400, 140);
 		ScrollPane.setViewportView(listaSalasCadastradas);
 		listaSalasCadastradas.setLayoutOrientation(JList.VERTICAL);
@@ -71,6 +75,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		janela.add(pesquisa);
 		janela.add(panel);
 		janela.add(campoBusca);
+		janela.add(interrogacao);
 	
 		/// Dados do container
 		janela.setSize(500, 390);
@@ -83,6 +88,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		refreshSala.addActionListener(this);
 		voltar.addActionListener(this);
 		pesquisa.addActionListener(this);
+		interrogacao.addActionListener(this);
 		listaSalasCadastradas.addListSelectionListener(this);
 		
 	
@@ -108,22 +114,22 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		/// Mecanismo de pesquisa
 		if (src == pesquisa) {
 			SalaCinema sl = new SalaCinema();
-			nome = campoBusca.getText();
+			nome = campoBusca.getText().replaceAll("[\\D]", "");
 			p = sala.retornaPos(nome);
 			if (p == -1) {
 				sl.produtoNaoEncontrado();
 				listaSalasCadastradas.setListData(sl.visualizarNome());
 				listaSalasCadastradas.updateUI();
-			}
-			else {
-				for (int i = 0; i < p; i ++)
-					sl.cadastrarvazio();
+				
+			} else {
+				for (int i = 0; i < p; i ++) sl.cadastrarvazio();
 				sl.cadastrar(sala.buscar(nome));
 				listaSalasCadastradas.setListData(sl.visualizarNome());
 				listaSalasCadastradas.updateUI();
-			
 			}
 		}
+		
+		if (src == interrogacao) mensagemDuvida();
 
 	}
 	
@@ -136,6 +142,11 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 			new TelaDetalheSala().criarTelaDetalheSala(2, this, sala,
 					listaSalasCadastradas.getSelectedIndex());
 		}
+	}
+	
+	public void mensagemDuvida() {
+		JOptionPane.showMessageDialog(null, "Digite o número da sala desejado na barra de busca.", null, 
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

@@ -71,16 +71,25 @@ public class TelaIngresso implements ActionListener {
 		
 			/// Leva o usuário para a próxima página
 			if(src == proximo) {
-				qntddIngressos = Integer.parseInt(valorQntddIngressos.getText());
-				janela.dispose();
-				while (i < qntddIngressos) {
-				new TelaDetalheIngresso().criarTelaDetalheIngresso(this, venda);
-				i ++;
-				}
+//				if (valorQntddIngressos.getText() != null) {
+					qntddIngressos = Integer.parseInt(valorQntddIngressos.getText());
+					while (i < qntddIngressos) {
+						new TelaDetalheIngresso().criarTelaDetalheIngresso(this, venda);
+						i ++;
+					}
+					janela.dispose();
+//				}
+//				else mensagemErro();
 			}
+			
 			/// Volta para a janela anterior e fecha a atual
 			if (src == voltar ) janela.dispose();
 	
+	}
+	
+	public void mensagemErro() {
+		JOptionPane.showMessageDialog(null, "Erro... Digite um número antes de prosseguir.", null, 
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

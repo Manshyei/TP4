@@ -31,13 +31,14 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	private String[] listaNomes = new String[1000];
 	private String cpf;
 	private int p;
+	private int item;
+	private int tamanho;
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
 	
 	public void criaTelaPessoa(int op, ClienteVIP c, Funcionario f){
 		cliente = c;
 		funcionario = f;
-
 		
 		switch (op) {
 		
@@ -75,9 +76,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroCliente.setBounds(166, 280, 150, 50);
 			refreshCliente.setBounds(326, 280, 150, 50);
 			voltar.setBounds(7, 280, 150, 50);
-			pesquisaCliente.setBounds(290, 70, 100, 25);
-			interrogacao.setBounds(425, 50, 50, 50);
-			campoBusca.setBounds(90, 70, 185, 25);
+			pesquisaCliente.setBounds(260, 70, 100, 25);
+			interrogacao.setBounds(370, 70, 50, 25);
+			campoBusca.setBounds(60, 70, 185, 25);
 			ScrollPane.setViewportView(listaClientesCadastrados);
 			listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
 	        panel.add(ScrollPane);
@@ -145,9 +146,9 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			cadastroFuncionario.setBounds(166, 280, 150, 50);
 			refreshFuncionario.setBounds(326, 280, 150, 50);
 			voltar.setBounds(7, 280, 150, 50);
-			pesquisaFuncionario.setBounds(290, 70, 100, 25);
-			interrogacao.setBounds(425, 50, 50, 50);
-			campoBusca.setBounds(90, 70, 185, 25);
+			pesquisaFuncionario.setBounds(260, 70, 100, 25);
+			interrogacao.setBounds(370, 70, 50, 25);
+			campoBusca.setBounds(60, 70, 185, 25);
 			
 			janela.setLayout(null);
 
@@ -191,9 +192,8 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 		
 		/// Cadastro de cliente
-		if(src == cadastroCliente) {
+		if(src == cadastroCliente) 
 			new TelaDetalhePessoa().criarTelaDetalhePessoa(1, this, cliente, funcionario, 0);
-		}
 
 		/// Cadastro de funcionário
 		if(src == cadastroFuncionario)
@@ -217,7 +217,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		/// Mecanismo de pesquisa para cliente;
 		if (src == pesquisaCliente) {
 			ClienteVIP c = new ClienteVIP();
-			cpf = campoBusca.getText();
+			cpf = campoBusca.getText().replaceAll("[\\D]", "");
 			p = cliente.retornaPos(cpf);
 			if (p == -1) {
 				c.produtoNaoEncontrado();
@@ -235,7 +235,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		/// Mecanismo de pesquisa para funcionario;
 		if (src == pesquisaFuncionario) {
 			Funcionario f = new Funcionario();
-			cpf = campoBusca.getText();
+			cpf = campoBusca.getText().replaceAll("[\\D]", "");
 			p = funcionario.retornaPos(cpf);
 			if (p == -1) {
 				f.produtoNaoEncontrado();
@@ -261,6 +261,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 
 		/// Seleciona algum cliente da lista para editar
 		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
+			item = listaClientesCadastrados.getSelectedIndex();
 			new TelaDetalhePessoa().criarTelaDetalhePessoa(3, this, cliente, funcionario,
 					listaClientesCadastrados.getSelectedIndex());
 		}
@@ -273,7 +274,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	}
 	
 	public void mensagemDuvida() {
-		JOptionPane.showMessageDialog(null, "Ajuda", null, 
+		JOptionPane.showMessageDialog(null, "Digite o CPF do usuário desejado na barra de busca.", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 

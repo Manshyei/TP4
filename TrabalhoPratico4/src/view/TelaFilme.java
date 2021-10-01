@@ -15,6 +15,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 	private JButton refreshFilme;
 	private JButton voltar;
 	private JButton pesquisa;
+	private JButton interrogacao;
 	private JTextField campoBusca;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane ScrollPane = new JScrollPane();
@@ -41,6 +42,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		refreshFilme = new JButton("Atualizar Lista");
 		voltar = new JButton("Voltar");
 		pesquisa = new JButton("Buscar");
+		interrogacao = new JButton("?");
 		campoBusca = new JTextField(200);
 		
 		/// Realiza a seleção de fontes para cada um dos componentes
@@ -49,6 +51,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		refreshFilme.setFont(new Font("Arial", Font.BOLD, 17));
 		voltar.setFont(new Font("Arial", Font.BOLD, 17));
 		pesquisa.setFont(new Font("Arial", Font.BOLD, 15));
+		interrogacao.setFont(new Font("Arial", Font.BOLD, 20));
 		listaFilmesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
 		
 	
@@ -58,8 +61,9 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		refreshFilme.setBounds(326, 280, 150, 50);
 		voltar.setBounds(7, 280, 150, 50);
 		panel.setBounds(40, 110, 400, 140);
-		pesquisa.setBounds(290, 70, 100, 25);
-		campoBusca.setBounds(90, 70, 185, 25);
+		pesquisa.setBounds(260, 70, 100, 25);
+		campoBusca.setBounds(60, 70, 185, 25);
+		interrogacao.setBounds(370, 70, 50, 25);
 		ScrollPane.setViewportView(listaFilmesCadastrados);
 		listaFilmesCadastrados.setLayoutOrientation(JList.VERTICAL);
         panel.add(ScrollPane);
@@ -75,6 +79,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		janela.add(voltar);
 		janela.add(pesquisa);
 		janela.add(campoBusca);
+		janela.add(interrogacao);
 	
 		/// Dados do container
 		janela.setSize(500, 390);
@@ -87,6 +92,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		refreshFilme.addActionListener(this);
 		voltar.addActionListener(this);
 		pesquisa.addActionListener(this);
+		interrogacao.addActionListener(this);
 		listaFilmesCadastrados.addListSelectionListener(this);
 		
 	}
@@ -112,22 +118,22 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		
 		if (src == pesquisa) {
 			Filme f = new Filme();
-			nome = campoBusca.getText();
+			nome = campoBusca.getText().toUpperCase();
 			p = filme.retornaPos(nome);
 			if (p == -1) {
 				f.produtoNaoEncontrado();
 				listaFilmesCadastrados.setListData(f.visualizarNome());
 				listaFilmesCadastrados.updateUI();
-			}
-			else {
-				for (int i = 0; i < p; i ++)
-					f.cadastrarvazio();
+				
+			} else {
+				for (int i = 0; i < p; i ++) f.cadastrarvazio();
 				f.cadastrar(filme.buscar(nome));
 				listaFilmesCadastrados.setListData(f.visualizarNome());
 				listaFilmesCadastrados.updateUI();
-			
 			}
 		}
+		
+		if (src == interrogacao) mensagemDuvida();
 
 	}
 	
@@ -141,6 +147,11 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 			new TelaDetalheFilme().criarTelaDetalheFilme(2, this, filme,
 					listaFilmesCadastrados.getSelectedIndex());
 		}
+	}
+	
+	public void mensagemDuvida() {
+		JOptionPane.showMessageDialog(null, "Digite o nome do filme desejado na barra de busca.", null, 
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

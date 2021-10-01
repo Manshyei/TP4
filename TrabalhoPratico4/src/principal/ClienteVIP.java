@@ -66,117 +66,41 @@ public class ClienteVIP extends Pessoa {
 	// ------------------ METODOS ------------------- //
 	
 	// Funcao para cadastrar os dados de Cliente:
-	
-	/*public void cadastrar() {
-		String primNome, ultNome, data, cpf, numCel, email, genFav, planAss;
-		int qntdFilmesVistos;
-				
-		System.out.println("Primeiro Nome: ");
-		primNome = input.nextLine();
-		System.out.println("Último Nome: ");
-		ultNome = input.nextLine();
-		System.out.println("Data de Nascimento: ");
-		data = input.nextLine();
-		System.out.println("CPF: ");
-		cpf = input.nextLine();
-		System.out.println("Número de Celular: ");
-		numCel = input.nextLine();
-		System.out.println("E-mail: ");
-		email = input.nextLine();
-		System.out.println("Gênero Favorito: ");
-		genFav = input.nextLine();
-		System.out.println("Plano de Assinatura: ");
-		planAss = input.nextLine();
-		System.out.println("Quantidade de Filmes Vistos: ");
-		qntdFilmesVistos = ler.nextInt();
-		
-		ClienteVIP cliente = new ClienteVIP(primNome, ultNome, data, cpf, numCel, email, genFav, qntdFilmesVistos, planAss);
-		dadosCliente.add(cliente);
-		
-	}*/
-	
 	public void cadastrar(ClienteVIP cliente) {
 		dadosCliente.add(cliente);
 	}
 	
+	// Funcao para cadastrar um cliente vazio:
 	public void cadastrarvazio() {
 		ClienteVIP cliente = new ClienteVIP("", "", "", "", "", "", "", 0, "");
 		dadosCliente.add(cliente);
 	}
 	
+	// Funcao para retornar que não foram encontrados resultados:
 	public void produtoNaoEncontrado() {
 		ClienteVIP cliente = new ClienteVIP("Não foram encontrados resultados...", "", "", "", "", "", "", 0, "");
 		dadosCliente.add(cliente);
 	}
 	
-	// Funcao para buscar um Cliente Especifico por CPF:
+	// Funcao para buscar um Cliente Especifico por CPF e retorná-lo:
 	public ClienteVIP buscar(String cpf) {
 		for(int i = 0; i < dadosCliente.size(); i ++) 
-			if(cpf.equals(dadosCliente.get(i).getCpf())) {
+			if(cpf.equals(dadosCliente.get(i).getCpf().replaceAll("[\\D]", ""))) {
 				return dadosCliente.get(i);
 			}
 		return null;
 	}
 	
+	// Funcao para buscar um Cliente Especifico por CPF e retornar sua posição:
 	public int retornaPos(String cpf) {
 		for(int i = 0; i < dadosCliente.size(); i ++) 
-			if(cpf.equals(dadosCliente.get(i).getCpf())) {
+			if(cpf.equals(dadosCliente.get(i).getCpf().replaceAll("[\\D]", ""))) {
 				return i;
 			}
 		return -1;
 	}
 	
-	// Funcao para editar os dados de Cliente:
-	
-	/*public void editar(ClienteVIP cliente) {
-		
-		int num;
-		
-		do {
-			System.out.println("Selecione a opção desejada:\n"
-					+ "1-Editar o número de celular\n"
-					+ "2-Editar o genêro favorito\n"
-					+ "3-Editar o e-mail\n"
-					+ "4-Editar a quantidade de filmes vistos\n"
-					+ "5-Editar o plano de assinatura\n"
-					+ "6-Sair\n");
-			
-			num = ler.nextInt();
-			
-			switch (num) {
-				
-				case 1: 
-					System.out.println("Digite o novo número de celular do cliente:\n");
-					cliente.setNumCelular(input.nextLine());
-					break;
-				case 2:
-					System.out.println("Digite o novo gênero favorito do cliente:\n");
-					cliente.setGeneroFavorito(input.nextLine());
-					break;
-				case 3:
-					System.out.println("Digite o novo e-mail:\n");
-					cliente.setEmail(input.nextLine());
-					break;
-				case 4:
-					System.out.println("Digite a nova quantidade de filmes vistos do cliente:\n");
-					cliente.setQntddFilmesVistos(ler.nextInt());
-					break;
-				case 5:
-					System.out.println("Digite o novo plano de assinatura do cliente:\n");
-					cliente.setPlanoAssinatura(input.nextLine());
-					break;
-				case 6:
-					System.out.println("Retornando ao menu\n");
-					break;
-				default:
-					System.out.println("Não foi escolhida nenhuma opção válida\n"
-									   + "Por favor insira um número novamente");
-					break;
-			}
-		} while (1 > num || num > 6);
-			
-	}*/
-	
+	// Funcao para editar um Cliente:
 	public void editar(ClienteVIP cliente, int pos) {
 		deletar(pos);
 		cadastrar(cliente);
@@ -188,16 +112,12 @@ public class ClienteVIP extends Pessoa {
 //		dadosCliente.get(pos).qntddFilmesVistos = cliente.qntddFilmesVistos;
 	}
 	
-	/*public void deletar(ClienteVIP cliente) {
-		
-		dadosCliente.remove(dadosCliente.indexOf(cliente));
-		
-	}*/
-	
+	// Funcao para deletar um Cliente:
 	public void deletar(int pos) {
 		dadosCliente.remove(dadosCliente.get(pos));
 	}
 	
+	// Chamada de todos os dados de um Cliente:
 	public String toString() {	
 		return "Nome do cliente VIP: " + primeiroNome + " " + ultimoNome + "\n" 
 			   + "Data de Nascimento: " + dataNascimento + "\n" + "CPF: " + cpf + "\n" 
@@ -206,21 +126,16 @@ public class ClienteVIP extends Pessoa {
 			   + qntddFilmesVistos + "\n" + "Plano de Assinatura: " + planoAssinatura + "\n";
 	}
 	
-	public void visualizar() {
-		for(int i = 0; i < dadosCliente.size(); i ++) {
-			System.out.println(dadosCliente.get(i).toString());
-		}
-	}
-	
+	// Funcao para visualizar o primeiro nome dos clientes e retornar um vetor de string com eles na mesma ordem do arraylist:
 	public String[] visualizarNome() {
 		String[] var = new String [1000];
 		for(int i = 0; i < dadosCliente.size(); i ++) {
 			var[i] = dadosCliente.get(i).getPrimeiroNome();
-			//System.out.println(dadosCliente.get(i).getPrimeiroNome());
 		}
 		return var;
 	}
 	
+	// Funcoes a seguir são para retornar os dados de clientes específicos dentro do arraylist com base nas suas posições (Gets):
 	public String retornaPrimNome(int pos) {
 			return dadosCliente.get(pos).getPrimeiroNome();
 	}

@@ -59,7 +59,7 @@ public class TelaDetalheFilme implements ActionListener {
 		de filmes, se op = 2.                                           */ 
 		
 		if (op == 1) s = "Cadastro do Filme";
-		if (op == 2) s = "Detalhe do Filme";
+		if (op == 2) s = "Detalhes do Filme";
 
 		/// Cria um container
 		janela = new JFrame(s);
@@ -242,22 +242,6 @@ public class TelaDetalheFilme implements ActionListener {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
-	}
-
-	public void mensagemErroCadastro() {
-		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
-				+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
-				+ "1. Nem todos os campos foram preenchidos \n"
-				+ "2. CPF, identidade, DDD e telefone não contém apenas números", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-
-	public void mensagemErroExclusao() {
-		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-				+ "Verifique se o aluno está matriculado\n"
-				+ "em alguma disciplina. Se sim, cancele\n "
-				+ "a matricula e tente novamente.", null, 
-				JOptionPane.ERROR_MESSAGE);
 	}
 
 }

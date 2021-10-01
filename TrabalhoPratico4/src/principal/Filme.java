@@ -41,7 +41,6 @@ public class Filme {
 	
 	// Funcionalidades:
 		
-
 		Scanner ler = new Scanner(System.in);
 		ArrayList<Filme> dadosFilmes = new ArrayList<Filme>();
 		Scanner input = new Scanner(System.in);
@@ -49,15 +48,24 @@ public class Filme {
 	// Pré-cadastro de dados do cliente:
 	
 	public void dadosPreCadastradosFilmes(){
-		Filme shang_chi = new Filme("Shang-Chi e a lenda dos dez anéis",135,12,"Português","Shang-Chi deve enfrentar o passado quando é atraído para a teia da organização Dez Anéis.", "Ação","02/03/2021",2, 14,"15/03/2021");
-		Filme viuva_negra = new Filme("Viúva negra",133,12,"Português","Em Viúva Negra, acompanhamos a vida de Natasha Romanoff (Scarlett Johansson) após os eventos de Guerra Civil. "
-				+ "Se escondendo do governo norte-americano devido a sua aliança com o time do Capitão América, Natasha ainda precisa confrontar partes de sua história quando surge uma conspiração perigosa ligada ao seu passado. "
-				+ "Perseguida por uma força que não irá parar até derrotá-la, ela terá que lidar com sua antiga vida de espiã, e também reencontrar membros de sua família que deixou para trás antes de se tornar parte dos Vingadores.",
+		Filme shang_chi = new Filme("Shang-Chi",135,12,"Português","Shang-Chi "
+				+ "deve enfrentar o passado quando é atraído para a teia da organização Dez Anéis.", 
+				"Ação","02/03/2021",2, 14,"15/03/2021");
+		Filme viuva_negra = new Filme("Viúva negra",133,12,"Português","Em Viúva Negra, acompanhamos a "
+				+ "vida de Natasha Romanoff (Scarlett Johansson) após os eventos de Guerra Civil. "
+				+ "Se escondendo do governo norte-americano devido a sua aliança com o time do Capitão América, "
+				+ "Natasha ainda precisa confrontar partes de sua história quando surge uma conspiração "
+				+ "perigosa ligada ao seu passado. Perseguida por uma força que não irá parar até derrotá-la, "
+				+ "ela terá que lidar com sua antiga vida de espiã, e também reencontrar membros de sua família "
+				+ "que deixou para trás antes de se tornar parte dos Vingadores.",
 				"Ação","02/09/2021",10, 15,"23/08/2020");
-		Filme pulp_fiction = new Filme("Pulp Fiction - Tempo de violência", 152,18,"Português","Os assassinos Vincent e Jules passam por imprevistos ao recuperar uma mala para um mafioso. "
-				+ "O boxeador Butch é pago pelo mesmo mafioso para perder uma luta, e a esposa do criminoso fica sob responsabilidade de Vincent por uma noite."
-				+ " Essas histórias se relacionam numa teia repleta de violência.","Ação","18/02/1995",13,12,"19/10/2021");
-		Filme titanic = new Filme("TITANIC", 194, 12, "Português","Jack Dawson (Leonardo DiCaprio) é um jovem aventureiro que, na mesa de jogo, ganha uma passagem para a primeira viagem do transatlântico Titanic."
+		Filme pulp_fiction = new Filme("Pulp Fiction", 152,18,"Português","Os assassinos "
+				+ "Vincent e Jules passam por imprevistos ao recuperar uma mala para um mafioso. "
+				+ "O boxeador Butch é pago pelo mesmo mafioso para perder uma luta, e a esposa do criminoso "
+				+ "fica sob responsabilidade de Vincent por uma noite.Essas histórias se relacionam numa teia "
+				+ "repleta de violência.","Ação","18/02/1995",13,12,"19/10/2021");
+		Filme titanic = new Filme("Titanic", 194, 12, "Português","Jack Dawson (Leonardo DiCaprio) é um jovem "
+				+ "aventureiro que, na mesa de jogo, ganha uma passagem para a primeira viagem do transatlântico Titanic."
 				+ " Trata-se de um luxuoso e imponente navio, anunciado na época como inafundável, que parte para os Estados Unidos."
 				+ " Nele está também Rose DeWitt Bukater (Kate Winslet), a jovem noiva de Caledon Hockley (Billy Zane). "
 				+ "Rose está descontente com sua vida, já que sente-se sufocada pelos costumes da elite e não ama Caledon."
@@ -65,11 +73,12 @@ public class Filme {
 				+ "Um dia, desesperada, Rose ameaça se atirar do Titanic, mas Jack consegue demovê-la da ideia. "
 				+ "Pelo ato ele é convidado a jantar na primeira classe, onde começa a se tornar mais próximo de Rose."
 				+ " Logo eles se apaixonam, despertando a fúria de Caledon. "
-				+ "A situação fica ainda mais complicada quando o Titanic se choca com um iceberg, provocando algo que ninguém imaginava ser possível: o naufrágio do navio.",
-				"Drama","16/01/1998",8,22,"04/12/2021");
+				+ "A situação fica ainda mais complicada quando o Titanic se choca com um iceberg, provocando algo que ninguém "
+				+ "imaginava ser possível: o naufrágio do navio.", "Drama","16/01/1998",8,22,"04/12/2021");
 		Filme gente_grande = new Filme("Gente Grande", 99,12,"Português","Cinco amigos de infância se reencontram após a morte de seu treinador."
-				+ " Juntos novamente, Lenny (Adam Sandler), Eric (Kevin James), Kurt (Chris Rock), Marcus (David Spade) e Rob (Rob Schneider) decidem curtir o feriado de 4 de julho com suas famílias em uma casa no lago. "
-				+ "Eles relembram os bons momentos e fazem novas descobertas, além de se meterem em muitas confusões.","Comédia","24/09/2010",5, 6,"16/12/2021");
+				+ " Juntos novamente, Lenny (Adam Sandler), Eric (Kevin James), Kurt (Chris Rock), Marcus (David Spade) e Rob (Rob Schneider) "
+				+ "decidem curtir o feriado de 4 de julho com suas famílias em uma casa no lago. Eles relembram os bons momentos e fazem novas "
+				+ "descobertas, além de se meterem em muitas confusões.","Comédia","24/09/2010",5, 6,"16/12/2021");
 	
 		dadosFilmes.add(shang_chi);
 		dadosFilmes.add(viuva_negra);
@@ -82,157 +91,74 @@ public class Filme {
 	// ------------------ METODOS ------------------ //
 
 	// Funcao para cadastrar os dados de Filme:
-	
-//		public void cadastrar() {
-//			String nome, idioma, genero, sinopse, dataLancamento,dataExibicao;
-//			int duracao, classificacaoIndicativa, salaTransmissao,horario;
-//					
-//			System.out.println("Nome do filme: \n");
-//			nome = input.nextLine();
-//			System.out.println("Idioma do filme: \n");
-//			idioma = input.nextLine();
-//			System.out.println("Gênero do filme: \n");
-//			genero = input.nextLine();
-//			System.out.println("Sinopse do filme: \n");
-//			sinopse = input.nextLine();
-//			System.out.println("Data de lançamento do filme: \n");
-//			dataLancamento = input.nextLine();
-//			System.out.println("Data de exibição do filme: \n");
-//			dataExibicao = input.nextLine();
-//			System.out.println("Duração do filme: \n");
-//			duracao = ler.nextInt();
-//			System.out.println("Classificação indicativa: \n");
-//			classificacaoIndicativa = ler.nextInt();
-//			System.out.println("Sala de transmissão: \n");
-//			salaTransmissao = ler.nextInt();
-//			System.out.println("Horário do filme: \n");
-//			horario = ler.nextInt();
-//			
-//			Programacao progaux = new Programacao(horario,dataExibicao);
-//			Filme filmeaux = new Filme(nome,duracao,classificacaoIndicativa,idioma,sinopse,genero,dataLancamento,salaTransmissao,progaux);
-//			
-//			dadosFilmes.add(filmeaux);
-//
-//			
-//		}
-	
 	public void cadastrar(Filme filme) {
 		dadosFilmes.add(filme);
 	}
 		
-		// Funcao para buscar um filme por nome:
-		public Filme buscar(String nome) {
-			for(int i = 0; i < dadosFilmes.size(); i ++) 
-				if(nome.equals(dadosFilmes.get(i).getNome())) {
-					return dadosFilmes.get(i);
-				}
-			return null;
-		}
-		
-		public void cadastrarvazio() {
-			Filme filme = new Filme("",0,0,"","", "","",0, 0,"");
-			dadosFilmes.add(filme);
-		}
-		
-		public void produtoNaoEncontrado() {
-			Filme filme = new Filme("Não foram encontrados resultados...",0,0,"","", "","",0, 0,"");
-			dadosFilmes.add(filme);
-		}
-		
-		public int retornaPos(String nome) {
-			for(int i = 0; i < dadosFilmes.size(); i ++) 
-				if(nome.equals(dadosFilmes.get(i).getNome())) {
-					return i;
-				}
-			return -1;
-		}
-		
-		// Funcao para editar os dados do filme:
-		
-//		public void editar(Filme filme) {
-//			
-//			int num;
-//			
-//			do {
-//				System.out.println("Selecione a opção desejada:\n"
-//						+ "1-Editar o idioma do filme\n"
-//						+ "2-Editar a sala de transmissão do filme\n"
-//						+ "3-Sair\n");
-//						
-//						
-//				
-//				num = ler.nextInt();
-//				
-//				switch (num) {
-//					/// usuário escolhe a opção 1
-//					case 1: 
-//						System.out.println("Digite o novo idioma:\n");
-//						filme.setIdioma(input.nextLine());
-//						break;
-//					/// usuário escolhe a opção 2
-//					case 2:
-//						System.out.println("Digite o número da nova sala de transmissão:\n");
-//						filme.setSalaTransmissao(input.nextInt());
-//						break;
-//					/// usuário escolhe a opção 3
-//					case 3:
-//						System.out.println("Retornando ao menu\n");
-//						break;
-//					/// opção excessão	
-//					default:
-//						System.out.println("Não foi escolhida nenhuma opção válida\n"
-//										   + "Por favor insira um número novamente");
-//						break;
-//				}
-//			} while (1 > num || num > 3);
-//				
-//		}
-		
-		public void editar(Filme filme, int pos) {
-			deletar(pos);
-			cadastrar(filme);
-		}
-		
-		/// ------ Deleta o filme
-//		public void deletar(Filme filme) {
-//			
-//			dadosFilmes.remove(dadosFilmes.indexOf(filme));
-//			
-//		}
-		
-		public void deletar(int pos) {
-			dadosFilmes.remove(dadosFilmes.get(pos));
-		}
-		
-		public String toString() {	
-			return "Nome do filme: " + nome + "\n" 
-				   + "Duração: " + duracao + "\n" 
-				   + "Classificação indicativa: " + classificacaoIndicativa + "\n" 
-				   + "Idioma: " + idioma + "\n"
-				   + "Sinopse: " + sinopse + "\n" 
-				   + "Data de lançamento: " + dataLancamento + "\n"
-				   + "Gênero" + genero + "\n"
-				   + "Sala de transmissão: " + salaTransmissao + "\n";
-		}
-		
-		/// ------ Visualiza o filme
-		public void visualizar() {
-			System.out.println(dadosFilmes.size());
-			for(int i = 0; i < dadosFilmes.size(); i ++) {
-				System.out.println(dadosFilmes.get(i).toString());
+	// Funcao para buscar um filme por nome e retornar aquele filme:
+	public Filme buscar(String nome) {
+		for(int i = 0; i < dadosFilmes.size(); i ++) 
+			if(nome.equals(dadosFilmes.get(i).getNome().toUpperCase())) {
+				return dadosFilmes.get(i);
 			}
-			
-		}
-		
-		public String[] visualizarNome() {
-			String[] var = new String [1000];
-			for(int i = 0; i < dadosFilmes.size(); i ++) {
-				var[i] = dadosFilmes.get(i).getNome();
-				//System.out.println(dadosCliente.get(i).getPrimeiroNome());
+		return null;
+	}
+	
+	// Funcao para cadastrar um filme vazio:
+	public void cadastrarvazio() {
+		Filme filme = new Filme("",0,0,"","", "","",0, 0,"");
+		dadosFilmes.add(filme);
+	}
+	
+	// Funcao para retornar que não foram encontrados resultados:
+	public void produtoNaoEncontrado() {
+		Filme filme = new Filme("Não foram encontrados resultados...",0,0,"","", "","",0, 0,"");
+		dadosFilmes.add(filme);
+	}
+	
+	// Funcao para buscar um Filme Especifico por nome e retornar sua posição:
+	public int retornaPos(String nome) {
+		for(int i = 0; i < dadosFilmes.size(); i ++) 
+			if(nome.equals(dadosFilmes.get(i).getNome().toUpperCase())) {
+				return i;
 			}
-			return var;
+		return -1;
+	}
+	
+	// Funcao para editar os dados do filme:
+	public void editar(Filme filme, int pos) {
+		deletar(pos);
+		cadastrar(filme);
+	}
+	
+	// Funcao para deletar um filme especifico a partir de sua posicao:
+	public void deletar(int pos) {
+		dadosFilmes.remove(dadosFilmes.get(pos));
+	}
+	
+	// Chamada de todos os dados de um Filme:
+	public String toString() {	
+		return "Nome do filme: " + nome + "\n" 
+			   + "Duração: " + duracao + "\n" 
+			   + "Classificação indicativa: " + classificacaoIndicativa + "\n" 
+			   + "Idioma: " + idioma + "\n"
+			   + "Sinopse: " + sinopse + "\n" 
+			   + "Data de lançamento: " + dataLancamento + "\n"
+			   + "Gênero" + genero + "\n"
+			   + "Sala de transmissão: " + salaTransmissao + "\n";
+	}
+	
+	// Funcao para visualizar o nome dos filmes e retornar um vetor de string com eles na mesma ordem do arraylist:
+	public String[] visualizarNome() {
+		String[] var = new String [1000];
+		for(int i = 0; i < dadosFilmes.size(); i ++) {
+			var[i] = dadosFilmes.get(i).getNome();
+			//System.out.println(dadosCliente.get(i).getPrimeiroNome());
 		}
-		
+		return var;
+	}
+	
+	// Funcoes a seguir são para retornar os dados de filmes específicos dentro do arraylist com base nas suas posições (Gets):	
 	public String retornaNomeFilme(int pos) {
 		return dadosFilmes.get(pos).getNome();
 	}

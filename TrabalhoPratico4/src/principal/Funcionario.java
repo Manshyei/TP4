@@ -66,199 +66,113 @@ public class Funcionario extends Pessoa {
 	// ------------------ METODOS ------------------ //
 	
 	// Funcao para cadastrar os dados de Funcionario:
+	public void cadastrar(Funcionario funcionario) {
+		dadosFuncionario.add(funcionario);
+	}
 	
-		/*public void cadastrar() {
-			String primNome, ultNome, data, cpf, numCel, email, funcao, endereco;
-			double salario;
-					
-			System.out.println("Primeiro Nome: ");
-			primNome = input.nextLine();
-			System.out.println("Último Nome: ");
-			ultNome = input.nextLine();
-			System.out.println("Data de Nascimento: ");
-			data = input.nextLine();
-			System.out.println("CPF: ");
-			cpf = input.nextLine();
-			System.out.println("Número de Celular: ");
-			numCel = input.nextLine();
-			System.out.println("E-mail: ");
-			email = input.nextLine();
-			System.out.println("Função: ");
-			funcao = input.nextLine();
-			System.out.println("Endereço: ");
-			endereco = input.nextLine();
-			System.out.println("Salário: ");
-			salario = lerd.nextDouble();
-			
-			Funcionario funcionario = new Funcionario(primNome, ultNome, data, cpf, numCel, email, funcao, endereco, salario);
-			dadosFuncionario.add(funcionario);
-			
-		}*/
+	// Funcao para cadastrar um funcionario vazio:
+	public void cadastrarvazio() {
+		Funcionario func = new Funcionario("", "", "", "", "", "", "", "", 0);
+		dadosFuncionario.add(func);
+	}
 	
-		public void cadastrar(Funcionario funcionario) {
-			dadosFuncionario.add(funcionario);
-		}
+	// Funcao para retornar que não foram encontrados resultados:
+	public void produtoNaoEncontrado() {
+		Funcionario func = new Funcionario("Não foram encontrados resultados...", "", "", "", "", "", "", "", 0);
+		dadosFuncionario.add(func);
+	}
+	
+	// Funcao para buscar um Funcionario Especifico por CPF e retorná-lo:
+	public Funcionario buscar(String cpf) {
+		for(int i = 0; i < dadosFuncionario.size(); i ++) 
+			if(cpf.equals(dadosFuncionario.get(i).getCpf().replaceAll("[\\D]", ""))) {
+				return dadosFuncionario.get(i);
+			}
+		return null;
+	}
+	
+	// Funcao para buscar um funcionario Especifico por CPF e retornar sua posição:
+	public int retornaPos(String cpf) {
+		for(int i = 0; i < dadosFuncionario.size(); i ++) 
+			if(cpf.equals(dadosFuncionario.get(i).getCpf().replaceAll("[\\D]", ""))) {
+				return i;
+			}
+		return -1;
+	}
+	
+	// Funcao para editar os dados de funcionario:
+	public void editar(Funcionario funcionario, int pos) {
+		deletar(pos);
+		cadastrar(funcionario);
 		
-		public void cadastrarvazio() {
-			Funcionario func = new Funcionario("", "", "", "", "", "", "", "", 0);
-			dadosFuncionario.add(func);
-		}
-		
-		public void produtoNaoEncontrado() {
-			Funcionario func = new Funcionario("Não foram encontrados resultados...", "", "", "", "", "", "", "", 0);
-			dadosFuncionario.add(func);
-		}
-		
-		// Funcao para buscar um Funcionario Especifico por CPF:
-		public Funcionario buscar(String cpf) {
-			for(int i = 0; i < dadosFuncionario.size(); i ++) 
-				if(cpf.equals(dadosFuncionario.get(i).getCpf())) {
-					return dadosFuncionario.get(i);
-				}
-			return null;
-		}
-		
-		public int retornaPos(String cpf) {
-			for(int i = 0; i < dadosFuncionario.size(); i ++) 
-				if(cpf.equals(dadosFuncionario.get(i).getCpf())) {
-					return i;
-				}
-			return -1;
-		}
-		
-		// Funcao para editar os dados de Cliente:
-		
-		/*public void editar(Funcionario cliente) {
-			
-			int num;
-			
-			do {
-				System.out.println("Selecione a opção desejada:\n"
-						+ "1-Editar o número de celular\n"
-						+ "2-Editar o endereço\n"
-						+ "3-Editar o e-mail\n"
-						+ "4-Editar a função\n"
-						+ "5-Editar o salário\n"
-						+ "6-Sair\n");
-				
-				num = ler.nextInt();
-				
-				switch (num) {
-					
-					case 1: 
-						System.out.println("Digite o novo número de celular do funcionário:\n");
-						cliente.setNumCelular(input.nextLine());
-						break;
-					case 2:
-						System.out.println("Digite o novo endereço favorito do funcionário:\n");
-						cliente.setEndereco(input.nextLine());
-						break;
-					case 3:
-						System.out.println("Digite o novo e-mail:\n");
-						cliente.setEmail(input.nextLine());
-						break;
-					case 4:
-						System.out.println("Digite a nova função do funcionário:\n");
-						cliente.setFuncao(ler.nextLine());
-						break;
-					case 5:
-						System.out.println("Digite o novo salário do funcionário:\n");
-						cliente.setSalario(input.nextDouble());
-						break;
-					case 6:
-						System.out.println("Retornando ao menu\n");
-						break;
-					default:
-						System.out.println("Não foi escolhida nenhuma opção válida\n"
-										   + "Por favor insira um número novamente");
-						break;
-				}
-			} while (1 > num || num > 6);
-				
-		}*/
-		
-		public void editar(Funcionario funcionario, int pos) {
-			deletar(pos);
-			cadastrar(funcionario);
-			
 //			dadosFuncionario.get(pos).email = funcionario.email;
 //			dadosFuncionario.get(pos).funcao = funcionario.funcao;
 //			dadosFuncionario.get(pos).numCelular = funcionario.numCelular;
 //			dadosFuncionario.get(pos).salario = funcionario.salario;
 //			dadosFuncionario.get(pos).endereco = funcionario.endereco;
+	}
+	
+	// Funcao para deletar um funcionario:
+	public void deletar(int pos) {
+		
+		dadosFuncionario.remove(dadosFuncionario.get(pos));
+		
+	}
+	
+	// Chamada de todos os dados de um funcionario:
+	public String toString() {	
+		return "Nome do Funcionário: " + primeiroNome + " " + ultimoNome + "\n" 
+			   + "Data de Nascimento: " + dataNascimento + "\n" + "CPF: " + cpf + "\n" 
+			   + "Número de Celular: " + numCelular + "\n" + "E-mail:" + email + "\n" 
+			   + "função: " + funcao + "\n" + "Salário: "
+			   + salario + "\n" + "Endereço" + endereco + "\n";
+	}
+	
+	// Funcao para visualizar o primeiro nome dos funcionarios e retornar um vetor de string com eles na mesma ordem do arraylist:
+	public String[] visualizarNome() {
+		String[] var = new String [1000];
+		for(int i = 0; i < dadosFuncionario.size(); i ++) {
+			var[i] = dadosFuncionario.get(i).getPrimeiroNome();
 		}
-		
-		
-		/*public void deletar(Funcionario funcionario) {
-			
-			dadosFuncionario.remove(dadosFuncionario.indexOf(funcionario));
-			
-		}*/
-		
-		public void deletar(int pos) {
-			
-			dadosFuncionario.remove(dadosFuncionario.get(pos));
-			
-		}
-		
-		public String toString() {	
-			return "Nome do Funcionário: " + primeiroNome + " " + ultimoNome + "\n" 
-				   + "Data de Nascimento: " + dataNascimento + "\n" + "CPF: " + cpf + "\n" 
-				   + "Número de Celular: " + numCelular + "\n" + "E-mail:" + email + "\n" 
-				   + "função: " + funcao + "\n" + "Salário: "
-				   + salario + "\n" + "Endereço" + endereco + "\n";
-		}
-		
-		public void visualizar() {
-			System.out.println(dadosFuncionario.size());
-			for(int i = 0; i < dadosFuncionario.size(); i ++) {
-				System.out.println(dadosFuncionario.get(i).toString());
-			}
-		}
-		
-		public String[] visualizarNome() {
-			String[] var = new String [1000];
-			for(int i = 0; i < dadosFuncionario.size(); i ++) {
-				var[i] = dadosFuncionario.get(i).getPrimeiroNome();
-			}
-			return var;
-		}
-		
-		public String retornaPrimNome(int pos) {
-			return dadosFuncionario.get(pos).getPrimeiroNome();
-		}
-		
-		public String retornaData(int pos) {
-			return dadosFuncionario.get(pos).getDataNascimento();
-		}
-		
-		public String retornaUltNome(int pos) {
-			return dadosFuncionario.get(pos).getUltimoNome();
-		}
-		
-		public String retornaCPF(int pos) {
-			return dadosFuncionario.get(pos).getCpf();
-		}
-		
-		public String retornaNumCel(int pos) {
-			return dadosFuncionario.get(pos).getNumCelular();
-		}
-		
-		public String retornaEmail(int pos) {
-			return dadosFuncionario.get(pos).getEmail();
-		}
-		
-		public String retornaFuncao(int pos) {
-			return dadosFuncionario.get(pos).getFuncao();
-		}
-		
-		public String retornaEndereco(int pos) {
-			return dadosFuncionario.get(pos).getEndereco();
-		}
-		
-		public double retornaSalario(int pos) {
-			return dadosFuncionario.get(pos).getSalario();
-		}
+		return var;
+	}
+	
+	// Funcoes a seguir são para retornar os dados de funcionarios específicos dentro do arraylist com base nas suas posições (Gets):
+	public String retornaPrimNome(int pos) {
+		return dadosFuncionario.get(pos).getPrimeiroNome();
+	}
+	
+	public String retornaData(int pos) {
+		return dadosFuncionario.get(pos).getDataNascimento();
+	}
+	
+	public String retornaUltNome(int pos) {
+		return dadosFuncionario.get(pos).getUltimoNome();
+	}
+	
+	public String retornaCPF(int pos) {
+		return dadosFuncionario.get(pos).getCpf();
+	}
+	
+	public String retornaNumCel(int pos) {
+		return dadosFuncionario.get(pos).getNumCelular();
+	}
+	
+	public String retornaEmail(int pos) {
+		return dadosFuncionario.get(pos).getEmail();
+	}
+	
+	public String retornaFuncao(int pos) {
+		return dadosFuncionario.get(pos).getFuncao();
+	}
+	
+	public String retornaEndereco(int pos) {
+		return dadosFuncionario.get(pos).getEndereco();
+	}
+	
+	public double retornaSalario(int pos) {
+		return dadosFuncionario.get(pos).getSalario();
+	}
 
 	// ------------ GETTERS AND SETTERS ------------ //
 	
