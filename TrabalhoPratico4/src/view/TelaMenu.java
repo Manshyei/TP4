@@ -16,6 +16,7 @@ public class TelaMenu implements ActionListener {
 	private static JButton funcionario = new JButton("Funcionário");
 	private static JButton sala = new JButton("Sala de Cinema");
 	private static JButton ingresso = new JButton("Ingresso");
+	private static JButton sair = new JButton("Sair");
 	
 	/// Declaração dos dados a serem manipulados
 	ClienteVIP cliente = new ClienteVIP();
@@ -42,6 +43,7 @@ public class TelaMenu implements ActionListener {
 		funcionario.setFont(new Font("Arial", Font.BOLD, 18));
 		sala.setFont(new Font("Arial", Font.BOLD, 18));
 		ingresso.setFont(new Font("Arial", Font.BOLD, 18));
+		sair.setFont(new Font("Arial", Font.BOLD, 15));
 		
 		/// Realiza o posicionamento dos componentes
 		titulo.setBounds(140, 0, 300, 75);
@@ -50,6 +52,7 @@ public class TelaMenu implements ActionListener {
 		funcionario.setBounds(260, 75, 150, 50);
 		sala.setBounds(140, 200, 200, 50);
 		ingresso.setBounds(260, 135, 150, 50);
+		sair.setBounds(10, 250, 100, 30);
 		
 		janela.setLayout(null);
 		
@@ -60,6 +63,7 @@ public class TelaMenu implements ActionListener {
 		janela.add(funcionario);
 		janela.add(sala);
 		janela.add(ingresso);
+		janela.add(sair);
 		
 		/// Dados do container
 		janela.setSize(500, 325);
@@ -79,6 +83,7 @@ public class TelaMenu implements ActionListener {
 		funcionario.addActionListener(menu);
 		sala.addActionListener(menu);
 		ingresso.addActionListener(menu);
+		sair.addActionListener(menu);
 	}
 	
 	/// Detecção de eventos
@@ -99,5 +104,8 @@ public class TelaMenu implements ActionListener {
 		
 		if(src == ingresso)
 			new TelaIngresso().criaTelaIngresso(vi);
+		
+		if(src == sair)
+			janela.dispose();
 	}
 }
