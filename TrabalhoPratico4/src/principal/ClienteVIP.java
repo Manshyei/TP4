@@ -99,6 +99,8 @@ public class ClienteVIP extends Pessoa {
 	}*/
 	
 	public void cadastrar(ClienteVIP cliente) {
+		if (cliente == null)
+			cliente = new ClienteVIP("Não foram encontrados resultados", "", "", "", "", "", "", 0, "");
 		dadosCliente.add(cliente);
 	}
 	
@@ -106,7 +108,6 @@ public class ClienteVIP extends Pessoa {
 	public ClienteVIP buscar(String cpf) {
 		for(int i = 0; i < dadosCliente.size(); i ++) 
 			if(cpf.equals(dadosCliente.get(i).getCpf())) {
-				System.out.println(dadosCliente.get(i).toString());
 				return dadosCliente.get(i);
 			}
 		return null;

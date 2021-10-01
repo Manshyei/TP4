@@ -79,6 +79,8 @@ public class SalaCinema {
 //			}
 	
 			public void cadastrar(SalaCinema sala) {
+				if (sala == null)
+					sala = new SalaCinema("Não foram encontrados resultados...","", 0,"",0,0,false);
 				dadosSala.add(sala);
 			}
 
@@ -154,15 +156,14 @@ public class SalaCinema {
 				}
 			}
 			
-//			public SalaCinema buscar(int numSala) {
-//				for(int i = 0; i < dadosSala.size(); i ++) 
-//					if(numSala == (dadosSala.get(i).getNumSala())) {
-//						System.out.println(dadosSala.get(i).toString());
-//						return dadosSala.get(i);
-//					}
-//				return null;
-//			}
-//			
+			public SalaCinema buscar(String salaNum) {
+				for(int i = 0; i < dadosSala.size(); i ++) 
+					if(salaNum.equals(dadosSala.get(i).getNumSala())) {
+						return dadosSala.get(i);
+					}
+				return null;
+			}
+		
 			public String[] visualizarNome() {
 				String[] var = new String [1000];
 				for(int i = 0; i < dadosSala.size(); i ++) {

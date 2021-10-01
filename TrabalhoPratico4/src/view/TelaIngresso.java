@@ -20,7 +20,7 @@ public class TelaIngresso implements ActionListener {
 	VendaIngresso venda = new VendaIngresso();
 	private int i = 0;
 	
-	public void mostrarDados(VendaIngresso v){
+	public void criaTelaIngresso(VendaIngresso v){
 		venda = v;
 		
 		labelQntddIngressos.setFont(new Font("Arial", Font.BOLD, 18));

@@ -73,6 +73,7 @@ public class TelaMenu implements ActionListener {
 	public static void main(String[] args) {
 		TelaMenu menu = new TelaMenu();
 		
+		/// Detecção de eventos
 		clienteVIP.addActionListener(menu);
 		filme.addActionListener(menu);
 		funcionario.addActionListener(menu);
@@ -85,18 +86,18 @@ public class TelaMenu implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == clienteVIP)
-			new TelaPessoa().mostrarDados(1, cliente, func);
+			new TelaPessoa().criaTelaPessoa(1, cliente, func);
 		
 		if(src == funcionario)
-			new TelaPessoa().mostrarDados(2, cliente, func);
+			new TelaPessoa().criaTelaPessoa(2, cliente, func);
 		
 		if(src == sala)
-			new TelaSala().mostrarDados(sla);
+			new TelaSala().criaTelaSala(sla);
 		
 		if(src == filme)
-			new TelaFilme().mostrarDados(fil);
+			new TelaFilme().criaTelaFilme(fil);
 		
 		if(src == ingresso)
-			new TelaIngresso().mostrarDados(vi);
+			new TelaIngresso().criaTelaIngresso(vi);
 	}
 }

@@ -9,18 +9,17 @@ import principal.*;
 public class TelaPessoa implements ActionListener, ListSelectionListener {		
 	
 	/// Declaração dos componentes da GUI
-	
 	private JFrame janela;
 	private JLabel titulo;
 	private JButton cadastroCliente;
 	private JButton refreshCliente;
-	private JButton cadastroProf;
-	private JButton refreshProf;
+	private JButton cadastroFuncionario;
+	private JButton refreshFuncionario;
 	private JButton voltar;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane ScrollPane = new JScrollPane();
 	
-	/// Declaração de ArrayLists para armazenamento de dados
+	/// Declaração de JLists para armazenamento de dados
 	private JList<String> listaClientesCadastrados;
 	private JList<String> listaFuncionariosCadastrados;
 	
@@ -29,7 +28,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
 	
-	public void mostrarDados(int op, ClienteVIP c, Funcionario f){
+	public void criaTelaPessoa(int op, ClienteVIP c, Funcionario f){
 		cliente = c;
 		funcionario = f;
 
@@ -40,34 +39,35 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			com funcionários, se op = 2,  ou com clientes, se op = 1 */
 	
 		
-		case 1:// Mostrar dados de clientes cadastrados (JList)
+		case 1:/// Mostrar dados de clientes cadastrados (JList)
 			
 			listaNomes = cliente.visualizarNome();
 			listaClientesCadastrados = new JList<String>(listaNomes);
+			
+			/// Cria um container e seus componentes
 			janela = new JFrame("Clientes");
 			titulo = new JLabel("Clientes Cadastrados");
 			cadastroCliente = new JButton("Cadastrar");
-			refreshCliente = new JButton("Atualizar");
+			refreshCliente = new JButton("Atualizar Lista");
 			voltar = new JButton("Voltar");
 
 			
 			/// Realiza a seleção de fontes para cada um dos componentes
 			titulo.setFont(new Font("Arial", Font.BOLD, 30));
-			cadastroCliente.setFont(new Font("Arial", Font.BOLD, 18));
-			refreshCliente.setFont(new Font("Arial", Font.BOLD, 18));
+			cadastroCliente.setFont(new Font("Arial", Font.BOLD, 17));
+			refreshCliente.setFont(new Font("Arial", Font.BOLD, 17));
 			listaClientesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
-			voltar.setFont(new Font("Arial", Font.BOLD, 18));
+			voltar.setFont(new Font("Arial", Font.BOLD, 17));
+
+			/// Realiza o posicionamento dos componentes
 			titulo.setBounds(90, 15, 350, 30);
-
-			
 			panel.setBounds(40, 110, 400, 140);
-			ScrollPane.setViewportView(listaClientesCadastrados);
-			listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
-	        panel.add(ScrollPane);
-
 			cadastroCliente.setBounds(166, 280, 150, 50);
 			refreshCliente.setBounds(326, 280, 150, 50);
 			voltar.setBounds(7, 280, 150, 50);
+			ScrollPane.setViewportView(listaClientesCadastrados);
+			listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
+	        panel.add(ScrollPane);
 
 			janela.setLayout(null);
 
@@ -85,6 +85,7 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			janela.setLocationRelativeTo(null);
 			janela.setResizable(false);
 
+			/// Detecção de eventos
 			cadastroCliente.addActionListener(this);
 			refreshCliente.addActionListener(this);
 			voltar.addActionListener(this);
@@ -93,31 +94,33 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 
 			break;
 
-		case 2:// Mostrar dados de professores cadastrados (JList)
+		case 2:// Mostrar dados de funcionários cadastrados (JList)
+			
 			listaNomes = funcionario.visualizarNome();
 			listaFuncionariosCadastrados = new JList<String>(listaNomes);
+			
+			/// Cria um container e seus componentes
 			janela = new JFrame("Funcionários");
 			titulo = new JLabel("Funcionários Cadastrados");
-			cadastroProf = new JButton("Cadastrar");
-			refreshProf = new JButton("Atualizar");
+			cadastroFuncionario = new JButton("Cadastrar");
+			refreshFuncionario = new JButton("Atualizar Lista");
 			voltar = new JButton("Voltar");
 
+			/// Realiza a seleção de fontes para cada um dos componentes
 			titulo.setFont(new Font("Arial", Font.BOLD, 30));
-			cadastroProf.setFont(new Font("Arial", Font.BOLD, 18));
-			refreshProf.setFont(new Font("Arial", Font.BOLD, 18));
+			cadastroFuncionario.setFont(new Font("Arial", Font.BOLD, 17));
+			refreshFuncionario.setFont(new Font("Arial", Font.BOLD, 17));
 			listaFuncionariosCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
-			voltar.setFont(new Font("Arial", Font.BOLD, 18));
+			voltar.setFont(new Font("Arial", Font.BOLD, 17));
 
+			/// Realiza o posicionamento dos componentes
 			titulo.setBounds(65, 15, 400, 30);
 			panel.setBounds(40, 110, 400, 140);
 			ScrollPane.setViewportView(listaFuncionariosCadastrados);
 			listaFuncionariosCadastrados.setLayoutOrientation(JList.VERTICAL);
 	        panel.add(ScrollPane);
-
-
-
-			cadastroProf.setBounds(166, 280, 150, 50);
-			refreshProf.setBounds(326, 280, 150, 50);
+			cadastroFuncionario.setBounds(166, 280, 150, 50);
+			refreshFuncionario.setBounds(326, 280, 150, 50);
 			voltar.setBounds(7, 280, 150, 50);
 
 			janela.setLayout(null);
@@ -125,23 +128,26 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 			
 			/// Coloca os componentes no container
 			janela.add(titulo);
-			janela.add(cadastroProf);
-			janela.add(refreshProf);
+			janela.add(cadastroFuncionario);
+			janela.add(refreshFuncionario);
 			janela.add(voltar);
 			janela.add(panel);
 
+			/// Dados do container
 			janela.setSize(500, 390);
 			janela.setVisible(true);
-
-			cadastroProf.addActionListener(this);
-			refreshProf.addActionListener(this);
-			voltar.addActionListener(this);
-			listaFuncionariosCadastrados.addListSelectionListener(this);
 			janela.setLocationRelativeTo(null);
 			janela.setResizable(false);
+
+			/// Detecção de eventos
+			cadastroFuncionario.addActionListener(this);
+			refreshFuncionario.addActionListener(this);
+			voltar.addActionListener(this);
+			listaFuncionariosCadastrados.addListSelectionListener(this);
 			
 			break;
 
+			/// Caso em que, por algum motivo, op não recebe nem 1 nem 2
 		default:
 			JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
 					JOptionPane.ERROR_MESSAGE);
@@ -149,35 +155,36 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 
 	}
 
-	//Captura eventos relacionados aos botões da interface
+	/// Detecção de eventos relacionados aos botões
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		//Cadastro de novo aluno
+		/// Cadastro de cliente
 		if(src == cadastroCliente)
 			new TelaDetalhePessoa().inserirEditar(1, this, cliente, funcionario, 0);
 
-		//Cadastro de novo professor
-		if(src == cadastroProf)
+		/// Cadastro de funcionário
+		if(src == cadastroFuncionario)
 			new TelaDetalhePessoa().inserirEditar(2, this, cliente, funcionario, 0);
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
+		/// Atualiza a lista de clientes
 		if(src == refreshCliente) {
 			listaClientesCadastrados.setListData(cliente.visualizarNome());			
 			listaClientesCadastrados.updateUI();
 		}
 
-		// Atualiza a lista de nomes de funcionarios mostrada no JList
-		if(src == refreshProf) {
+		/// Atualiza a lista de funcionários
+		if(src == refreshFuncionario) {
 			listaFuncionariosCadastrados.setListData(funcionario.visualizarNome());
 			listaFuncionariosCadastrados.updateUI();
 		}
 		
+		/// Volta para a janela anterior e fecha a atual
 		if (src == voltar ) janela.dispose();
 
 	}
 	
-	//Função de atualizar automaticamente;
+	/// Função de atualizar automaticamente(UNFINISHED);
 	/*public void refresh(ActionEvent  a, JButton save) {
 		Object src = a.getSource();
 		listaNomes = cliente.visualizarNome();
@@ -190,15 +197,17 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 
 	}*/
 
-	//Captura eventos relacionados ao JList
+	/// Detecção de eventos relacionados à lista de clientes ou funcionários
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 
+		/// Seleciona algum cliente da lista para editar
 		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
 			new TelaDetalhePessoa().inserirEditar(3, this, cliente, funcionario,
 					listaClientesCadastrados.getSelectedIndex());
 		}
-
+		
+		/// Seleciona algum funcionário da lista para editar
 		if(e.getValueIsAdjusting() && src == listaFuncionariosCadastrados) {
 			new TelaDetalhePessoa().inserirEditar(4, this, cliente, funcionario,
 					listaFuncionariosCadastrados.getSelectedIndex());
