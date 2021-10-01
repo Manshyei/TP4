@@ -14,6 +14,7 @@ import principal.*;
 public class TelaDetalheFilme implements ActionListener {
 	
 	private JFrame janela;
+	
 	private JLabel labelNomeFilme = new JLabel("Nome do Filme: ");
 	private JTextField valorNomeFilme;
 	
@@ -46,6 +47,8 @@ public class TelaDetalheFilme implements ActionListener {
 	
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
+	private JButton botaoCancelar = new JButton("Cancelar");
+
 	private String[] novoDado = new String[11];
 	private int posicao;
 	private int opcao;
@@ -113,8 +116,8 @@ public class TelaDetalheFilme implements ActionListener {
 
 		//Coloca botoes de excluir e salvar
 		if (op == 2) {
-			botaoSalvar.setBounds(330, 50, 150, 50);
-			botaoExcluir.setBounds(330, 190, 150, 50);
+			botaoSalvar.setBounds(175, 320, 150, 50);
+			botaoExcluir.setBounds(10, 320, 150, 50);
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoExcluir.setFont(new Font("Arial", Font.BOLD, 18));
 			this.janela.add(botaoExcluir);
@@ -122,9 +125,12 @@ public class TelaDetalheFilme implements ActionListener {
 		}
 		
 		if (op == 1) {
-			botaoSalvar.setBounds(330, 120, 150, 50);
+			botaoSalvar.setBounds(175, 320, 150, 50);
+			botaoCancelar.setBounds(10, 320, 150, 50);
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
+			botaoCancelar.setFont(new Font("Arial", Font.BOLD, 18));
 			this.janela.add(botaoSalvar);
+			this.janela.add(botaoCancelar);
 		}
 
 		this.janela.add(labelNomeFilme);
@@ -153,13 +159,14 @@ public class TelaDetalheFilme implements ActionListener {
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(500, 410);
+		this.janela.setSize(365, 420);
 		this.janela.setVisible(true);
 		this.janela.setLocationRelativeTo(null);
 		this.janela.setResizable(false);
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
+		botaoCancelar.addActionListener(this);
 	}
 
 
@@ -202,6 +209,8 @@ public class TelaDetalheFilme implements ActionListener {
 				mensagemSucessoExclusao();
 			}
 		}
+		
+		if(src == botaoCancelar) janela.dispose();
 	}
 
 	public void mensagemSucessoExclusao() {

@@ -7,6 +7,8 @@ import principal.*;
 
 public class TelaMenu implements ActionListener {
 	
+	/// Declaração dos componentes da GUI
+	
 	private static JFrame janela = new JFrame("Cinema");
 	private static JLabel titulo = new JLabel("Menu Principal");
 	private static JButton clienteVIP = new JButton("Cliente VIP");
@@ -14,20 +16,26 @@ public class TelaMenu implements ActionListener {
 	private static JButton funcionario = new JButton("Funcionário");
 	private static JButton sala = new JButton("Sala de Cinema");
 	private static JButton ingresso = new JButton("Ingresso");
+	
+	/// Declaração dos dados a serem manipulados
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario func = new Funcionario();
 	SalaCinema sla = new SalaCinema();
 	VendaIngresso vi = new VendaIngresso();
 	Filme fil = new Filme();
-	//public static ControleDados dados = new ControleDados();
 	
+	/// Construtor do menu
 	public TelaMenu() {
+		
+		/// Realiza o pré-cadastro de dados
 		cliente.dadosPreCadastradosClientes();
 		func.dadosPreCadastradosFuncionario();
 		sla.dadosPreCadastradosSala();
 		vi.dadosPreCadastradosVendaIngresso();
 		fil.dadosPreCadastradosFilmes();
 		
+		
+		/// Realiza a seleção de fontes para cada um dos componentes
 		titulo.setFont(new Font("Arial", Font.BOLD, 30));
 		clienteVIP.setFont(new Font("Arial", Font.BOLD, 18));
 		filme.setFont(new Font("Arial", Font.BOLD, 18));
@@ -35,6 +43,7 @@ public class TelaMenu implements ActionListener {
 		sala.setFont(new Font("Arial", Font.BOLD, 18));
 		ingresso.setFont(new Font("Arial", Font.BOLD, 18));
 		
+		/// Realiza o posicionamento dos componentes
 		titulo.setBounds(140, 0, 300, 75);
 		clienteVIP.setBounds(60, 75, 150, 50);
 		filme.setBounds(60, 135, 150, 50);
@@ -44,6 +53,7 @@ public class TelaMenu implements ActionListener {
 		
 		janela.setLayout(null);
 		
+		/// Coloca os componentes no container
 		janela.add(titulo);
 		janela.add(clienteVIP);
 		janela.add(filme);
@@ -51,6 +61,7 @@ public class TelaMenu implements ActionListener {
 		janela.add(sala);
 		janela.add(ingresso);
 		
+		/// Dados do container
 		janela.setSize(500, 325);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
@@ -58,6 +69,7 @@ public class TelaMenu implements ActionListener {
 		janela.setResizable(false);
 	}
 	
+	/// Função main
 	public static void main(String[] args) {
 		TelaMenu menu = new TelaMenu();
 		
@@ -68,6 +80,7 @@ public class TelaMenu implements ActionListener {
 		ingresso.addActionListener(menu);
 	}
 	
+	/// Detecção de eventos
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
@@ -87,4 +100,3 @@ public class TelaMenu implements ActionListener {
 			new TelaIngresso().mostrarDados(vi);
 	}
 }
-

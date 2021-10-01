@@ -29,6 +29,7 @@ public class TelaDetalheSala implements ActionListener {
 	private JLabel labelCadeiraVaga = new JLabel("Cadeira Vaga: ");
 	private JTextField valorCadeiraVaga;
 	private JButton botaoExcluir = new JButton("Excluir");
+	private JButton botaoCancelar = new JButton("Cancelar");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private String[] novoDado = new String[8];
 	private int posicao;
@@ -66,38 +67,27 @@ public class TelaDetalheSala implements ActionListener {
 			valorQntddLinhas = new JTextField(String.valueOf(sala.retornaQntddLinhasCadeiras(posicao)), 200);
 			valorCadeiraVaga = new JTextField(String.valueOf(sala.retornaCadeiraVaga(posicao)), 200);	
 
-		} else { //Não preenche com dados
-
-			valorNumSala = new JTextField(200);
-			valorQntddCadeiras = new JTextField(200);
-			valorTipoSala = new JTextField(200);
-			valorFormSala = new JTextField(200);
-			valorQntdColunas = new JTextField(200);
-			valorQntddLinhas = new JTextField(200);
-			valorCadeiraVaga = new JTextField(200);
-
-			botaoSalvar.setBounds(245, 175, 115, 30);
 		}
 
 		labelNumSala.setBounds(10, 10, 150, 25);
-		valorNumSala.setBounds(145, 10, 180, 25);
-		labelQntddCadeiras.setBounds(10, 57, 150, 25);
-		valorQntddCadeiras.setBounds(145, 57, 180, 25);
-		labelTipoSala.setBounds(10, 104, 180, 25);
-		valorTipoSala.setBounds(145, 104, 180, 25);		
-		labelFormSala.setBounds(10, 151, 150, 25);
-		valorFormSala.setBounds(145, 151, 180, 25);
-		labelQntddColunas.setBounds(10, 199, 150, 25);
-		valorQntdColunas.setBounds(145, 199, 180, 25);
-		labelQntddLinhas.setBounds(10, 246, 150, 25);
-		valorQntddLinhas.setBounds(145, 246, 180, 25);
-		labelCadeiraVaga.setBounds(10, 293, 150, 25);
-		valorCadeiraVaga.setBounds(145, 293, 180, 25);
+		valorNumSala.setBounds(145, 10, 185, 25);
+		labelQntddCadeiras.setBounds(10, 40, 150, 25);
+		valorQntddCadeiras.setBounds(145, 40, 185, 25);
+		labelTipoSala.setBounds(10, 70, 180, 25);
+		valorTipoSala.setBounds(145, 70, 185, 25);		
+		labelFormSala.setBounds(10, 100, 150, 25);
+		valorFormSala.setBounds(145, 100, 185, 25);
+		labelQntddColunas.setBounds(10, 130, 150, 25);
+		valorQntdColunas.setBounds(145, 130, 185, 25);
+		labelQntddLinhas.setBounds(10, 160, 150, 25);
+		valorQntddLinhas.setBounds(145, 160, 185, 25);
+		labelCadeiraVaga.setBounds(10, 190, 150, 25);
+		valorCadeiraVaga.setBounds(145, 190, 185, 25);
 
 		//Coloca botoes de excluir e salvar
 		if (op == 2) {
-			botaoSalvar.setBounds(330, 50, 150, 50);
-			botaoExcluir.setBounds(330, 190, 150, 50);
+			botaoSalvar.setBounds(180, 198, 150, 50);
+			botaoExcluir.setBounds(10, 198, 150, 50);
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 			botaoExcluir.setFont(new Font("Arial", Font.BOLD, 18));
 			this.janela.add(botaoExcluir);
@@ -105,8 +95,10 @@ public class TelaDetalheSala implements ActionListener {
 		}
 		
 		if (op == 1) {
-			botaoSalvar.setBounds(330, 120, 150, 50);
+			botaoSalvar.setBounds(180, 198, 150, 50);
+			botaoCancelar.setBounds(10, 198, 150, 50);
 			botaoSalvar.setFont(new Font("Arial", Font.BOLD, 18));
+			botaoCancelar.setFont(new Font("Arial", Font.BOLD, 18));
 			this.janela.add(botaoSalvar);
 		}
 
@@ -123,16 +115,18 @@ public class TelaDetalheSala implements ActionListener {
 		this.janela.add(labelQntddLinhas);
 		this.janela.add(valorQntddLinhas);
 		this.janela.add(botaoSalvar);
+		this.janela.add(botaoCancelar);
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(500, 325);
+		this.janela.setSize(365, 300);
 		this.janela.setVisible(true);
 		this.janela.setLocationRelativeTo(null);
 		this.janela.setResizable(false);
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
+		botaoCancelar.addActionListener(this);
 	}
 
 
@@ -170,6 +164,9 @@ public class TelaDetalheSala implements ActionListener {
 				mensagemSucessoExclusao();
 			}
 		}
+		
+		if(src == botaoCancelar) janela.dispose();
+		
 	}
 
 	public void mensagemSucessoExclusao() {

@@ -12,6 +12,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 	private JLabel titulo;
 	private JButton cadastroSala;
 	private JButton refreshSala;
+	private JButton voltar;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane ScrollPane = new JScrollPane();
 	private JList<String> listaSalasCadastradas;
@@ -27,13 +28,15 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		titulo = new JLabel("Salas Cadastradas");
 		cadastroSala = new JButton("Cadastrar");
 		refreshSala = new JButton("Atualizar");
+		voltar = new JButton("Voltar");
 	
 		titulo.setFont(new Font("Arial", Font.BOLD, 30));
 		cadastroSala.setFont(new Font("Arial", Font.BOLD, 18));
 		refreshSala.setFont(new Font("Arial", Font.BOLD, 18));
+		voltar.setFont(new Font("Arial", Font.BOLD, 18));
 		listaSalasCadastradas.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(90, 15, 350, 30);
-		panel.setBounds(40, 50, 400, 140);
+		panel.setBounds(40, 110, 400, 140);
 		ScrollPane.setViewportView(listaSalasCadastradas);
 		listaSalasCadastradas.setLayoutOrientation(JList.VERTICAL);
         panel.add(ScrollPane);
@@ -41,8 +44,9 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 //		listaSalasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 //		listaSalasCadastradas.setVisibleRowCount(10);
 	
-		cadastroSala.setBounds(70, 210, 150, 50);
-		refreshSala.setBounds(250, 210, 150, 50);
+        cadastroSala.setBounds(166, 280, 150, 50);
+		refreshSala.setBounds(326, 280, 150, 50);
+		voltar.setBounds(7, 280, 150, 50);
 	
 		janela.setLayout(null);
 	
@@ -50,13 +54,15 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		//janela.add(listaSalasCadastradas);
 		janela.add(cadastroSala);
 		janela.add(refreshSala);
+		janela.add(voltar);
 		janela.add(panel);
 	
-		janela.setSize(500, 325);
+		janela.setSize(500, 390);
 		janela.setVisible(true);
 	
 		cadastroSala.addActionListener(this);
 		refreshSala.addActionListener(this);
+		voltar.addActionListener(this);
 		listaSalasCadastradas.addListSelectionListener(this);
 		janela.setLocationRelativeTo(null);
 		janela.setResizable(false);
@@ -79,6 +85,8 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 			listaSalasCadastradas.setListData(sala.visualizarNome());			
 			listaSalasCadastradas.updateUI();
 		}
+		
+		if (src == voltar ) janela.dispose();
 
 	}
 	

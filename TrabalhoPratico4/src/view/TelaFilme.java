@@ -1,7 +1,6 @@
 package view;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -12,6 +11,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 	private JLabel titulo;
 	private JButton cadastroFilme;
 	private JButton refreshFilme;
+	private JButton voltar;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane ScrollPane = new JScrollPane();
 	private JList<String> listaFilmesCadastrados;
@@ -23,44 +23,50 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		
 		listaFilmes = filme.visualizarNome();
 		listaFilmesCadastrados = new JList<String>(listaFilmes);
-		janela = new JFrame("Filmes");
+		
+		//Título;
 		titulo = new JLabel("Filmes Cadastrados");
-		cadastroFilme = new JButton("Cadastrar");
-		refreshFilme = new JButton("Atualizar");
-	
 		titulo.setFont(new Font("Arial", Font.BOLD, 30));
-		cadastroFilme.setFont(new Font("Arial", Font.BOLD, 18));
-		refreshFilme.setFont(new Font("Arial", Font.BOLD, 18));
-		listaFilmesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(90, 15, 350, 30);
-		panel.setBounds(40, 50, 400, 140);
+		
+		//Botão;
+		cadastroFilme = new JButton("Cadastrar");
+		cadastroFilme.setFont(new Font("Arial", Font.BOLD, 18));
+		cadastroFilme.setBounds(166, 280, 150, 50);
+		refreshFilme = new JButton("Atualizar");
+		refreshFilme.setFont(new Font("Arial", Font.BOLD, 18));
+		refreshFilme.setBounds(326, 280, 150, 50);
+		voltar = new JButton("Voltar");
+		voltar.setFont(new Font("Arial", Font.BOLD, 18));
+		voltar.setBounds(7, 280, 150, 50);
+		
+		//Lista
+		listaFilmesCadastrados.setFont(new Font("Arial", Font.BOLD, 15));
+		panel.setBounds(40, 110, 400, 140);
 		ScrollPane.setViewportView(listaFilmesCadastrados);
 		listaFilmesCadastrados.setLayoutOrientation(JList.VERTICAL);
         panel.add(ScrollPane);
-//		listaFilmesCadastrados.setBounds(40, 50, 400, 140);
-//		listaFilmesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//		listaFilmesCadastrados.setVisibleRowCount(10);
 	
-		cadastroFilme.setBounds(70, 210, 150, 50);
-		refreshFilme.setBounds(250, 210, 150, 50);
-	
+        //Janela
+      	janela = new JFrame("Filmes");
 		janela.setLayout(null);
 	
 		janela.add(titulo);
-		//janela.add(listaFilmesCadastrados);
 		janela.add(cadastroFilme);
 		janela.add(refreshFilme);
 		janela.add(panel);
+		janela.add(voltar);
 	
-		janela.setSize(500, 325);
+		janela.setSize(500, 390);
 		janela.setVisible(true);
+		
+		janela.setLocationRelativeTo(null);
+		janela.setResizable(false);
 	
 		cadastroFilme.addActionListener(this);
 		refreshFilme.addActionListener(this);
+		voltar.addActionListener(this);
 		listaFilmesCadastrados.addListSelectionListener(this);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
-
 		
 	}
 
@@ -79,6 +85,8 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 			listaFilmesCadastrados.setListData(filme.visualizarNome());			
 			listaFilmesCadastrados.updateUI();
 		}
+		
+		if (src == voltar ) janela.dispose();
 
 	}
 	
