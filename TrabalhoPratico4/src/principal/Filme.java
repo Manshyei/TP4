@@ -153,7 +153,6 @@ public class Filme {
 		String[] var = new String [1000];
 		for(int i = 0; i < dadosFilmes.size(); i ++) {
 			var[i] = dadosFilmes.get(i).getNome();
-			//System.out.println(dadosCliente.get(i).getPrimeiroNome());
 		}
 		return var;
 	}

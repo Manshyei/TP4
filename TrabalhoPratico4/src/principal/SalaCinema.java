@@ -118,11 +118,10 @@ public class SalaCinema {
 	}
 	
 	// Funcao para visualizar o numero das salas e retornar um vetor de string com eles na mesma ordem do arraylist:
-	public String[] visualizarNome() {
+	public String[] visualizarNum() {
 		String[] var = new String [1000];
 		for(int i = 0; i < dadosSala.size(); i ++) {
 			var[i] = String.valueOf(dadosSala.get(i).getNumSala());
-			//System.out.println(dadosSala.get(i).getPrimeiroNome());
 		}
 		return var;
 	}

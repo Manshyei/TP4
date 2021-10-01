@@ -31,8 +31,6 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 	private String[] listaNomes = new String[1000];
 	private String cpf;
 	private int p;
-	private int item;
-	private int tamanho;
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
 	
@@ -261,7 +259,6 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 
 		/// Seleciona algum cliente da lista para editar
 		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-			item = listaClientesCadastrados.getSelectedIndex();
 			new TelaDetalhePessoa().criarTelaDetalhePessoa(3, this, cliente, funcionario,
 					listaClientesCadastrados.getSelectedIndex());
 		}

@@ -52,7 +52,7 @@ public class TelaMenu implements ActionListener {
 		funcionario.setBounds(260, 75, 150, 50);
 		sala.setBounds(140, 200, 200, 50);
 		ingresso.setBounds(260, 135, 150, 50);
-		sair.setBounds(10, 250, 100, 30);
+		sair.setBounds(8, 250, 100, 30);
 		
 		janela.setLayout(null);
 		

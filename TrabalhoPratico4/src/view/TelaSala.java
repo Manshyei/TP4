@@ -35,7 +35,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		/// Cria um container e seus componentes
 		janela = new JFrame("Salas");
 		campoBusca = new JTextField(200);
-		listaSalasCadastradas = new JList<String>(sala.visualizarNome());
+		listaSalasCadastradas = new JList<String>(sala.visualizarNum());
 		titulo = new JLabel("Salas Cadastradas");
 		cadastroSala = new JButton("Cadastrar");
 		refreshSala = new JButton("Atualizar Lista");
@@ -104,7 +104,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 
 		/// Atualiza a lista de salas
 		if(src == refreshSala) {
-			listaSalasCadastradas.setListData(sala.visualizarNome());			
+			listaSalasCadastradas.setListData(sala.visualizarNum());			
 			listaSalasCadastradas.updateUI();
 		}
 		
@@ -118,13 +118,13 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 			p = sala.retornaPos(nome);
 			if (p == -1) {
 				sl.produtoNaoEncontrado();
-				listaSalasCadastradas.setListData(sl.visualizarNome());
+				listaSalasCadastradas.setListData(sl.visualizarNum());
 				listaSalasCadastradas.updateUI();
 				
 			} else {
 				for (int i = 0; i < p; i ++) sl.cadastrarvazio();
 				sl.cadastrar(sala.buscar(nome));
-				listaSalasCadastradas.setListData(sl.visualizarNome());
+				listaSalasCadastradas.setListData(sl.visualizarNum());
 				listaSalasCadastradas.updateUI();
 			}
 		}
