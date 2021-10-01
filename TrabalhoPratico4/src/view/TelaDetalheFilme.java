@@ -55,7 +55,7 @@ public class TelaDetalheFilme implements ActionListener {
 	private String s;
 	Filme filme = new Filme();
 	
-	public void inserirEditar(int op, 
+	public void criarTelaDetalheFilme(int op, 
 		TelaFilme p, Filme f, int pos) {
 		
 		this.opcao = op;

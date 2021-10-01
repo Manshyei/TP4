@@ -161,11 +161,11 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 		
 		/// Cadastro de cliente
 		if(src == cadastroCliente)
-			new TelaDetalhePessoa().inserirEditar(1, this, cliente, funcionario, 0);
+			new TelaDetalhePessoa().criarTelaDetalhePessoa(1, this, cliente, funcionario, 0);
 
 		/// Cadastro de funcionário
 		if(src == cadastroFuncionario)
-			new TelaDetalhePessoa().inserirEditar(2, this, cliente, funcionario, 0);
+			new TelaDetalhePessoa().criarTelaDetalhePessoa(2, this, cliente, funcionario, 0);
 
 		/// Atualiza a lista de clientes
 		if(src == refreshCliente) {
@@ -203,13 +203,13 @@ public class TelaPessoa implements ActionListener, ListSelectionListener {
 
 		/// Seleciona algum cliente da lista para editar
 		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(3, this, cliente, funcionario,
+			new TelaDetalhePessoa().criarTelaDetalhePessoa(3, this, cliente, funcionario,
 					listaClientesCadastrados.getSelectedIndex());
 		}
 		
 		/// Seleciona algum funcionário da lista para editar
 		if(e.getValueIsAdjusting() && src == listaFuncionariosCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(4, this, cliente, funcionario,
+			new TelaDetalhePessoa().criarTelaDetalhePessoa(4, this, cliente, funcionario,
 					listaFuncionariosCadastrados.getSelectedIndex());
 		}
 	}

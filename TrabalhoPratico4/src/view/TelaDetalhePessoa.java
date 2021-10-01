@@ -49,7 +49,7 @@ public class TelaDetalhePessoa implements ActionListener {
 	ClienteVIP cliente = new ClienteVIP();
 	Funcionario funcionario = new Funcionario();
 	
-	public void inserirEditar(int op, 
+	public void criarTelaDetalhePessoa(int op, 
 		TelaPessoa p, ClienteVIP c, Funcionario f, int pos) {
 		
 		this.opcao = op;

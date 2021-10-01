@@ -87,7 +87,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 		
 		/// Cadastro de filme
 		if(src == cadastroFilme)
-			new TelaDetalheFilme().inserirEditar(1, this, filme, 0);
+			new TelaDetalheFilme().criarTelaDetalheFilme(1, this, filme, 0);
 
 		/// Atualiza a lista de filmes
 		if(src == refreshFilme) {
@@ -107,7 +107,7 @@ public class TelaFilme implements ActionListener, ListSelectionListener {
 
 		/// Seleciona algum filme da lista para editar
 		if(e.getValueIsAdjusting() && src == listaFilmesCadastrados) {
-			new TelaDetalheFilme().inserirEditar(2, this, filme,
+			new TelaDetalheFilme().criarTelaDetalheFilme(2, this, filme,
 					listaFilmesCadastrados.getSelectedIndex());
 		}
 	}

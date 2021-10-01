@@ -79,8 +79,16 @@ public class SalaCinema {
 //			}
 	
 			public void cadastrar(SalaCinema sala) {
-				if (sala == null)
-					sala = new SalaCinema("Não foram encontrados resultados...","", 0,"",0,0,false);
+				dadosSala.add(sala);
+			}
+			
+			public void cadastrarvazio() {
+				SalaCinema sala = new SalaCinema("","", 0,"",0,0,false);
+				dadosSala.add(sala);
+			}
+			
+			public void produtoNaoEncontrado() {
+				SalaCinema sala = new SalaCinema("Não foram encontrados resultados...","", 0,"",0,0,false);
 				dadosSala.add(sala);
 			}
 
@@ -136,7 +144,6 @@ public class SalaCinema {
 			public void deletar(int pos) {
 				dadosSala.remove(dadosSala.get(pos));
 			}
-			
 
 			public String toString() {	
 				return "Número da sala: " + numSala + "\n" 
@@ -162,6 +169,14 @@ public class SalaCinema {
 						return dadosSala.get(i);
 					}
 				return null;
+			}
+			
+			public int retornaPos(String salaNum) {
+				for(int i = 0; i < dadosSala.size(); i ++) 
+					if(salaNum.equals(dadosSala.get(i).getNumSala())) {
+						return i;
+					}
+				return -1;
 			}
 		
 			public String[] visualizarNome() {

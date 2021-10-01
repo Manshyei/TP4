@@ -37,7 +37,7 @@ public class TelaDetalheSala implements ActionListener {
 	private String s;
 	SalaCinema sala = new SalaCinema();
 	
-	public void inserirEditar(int op, 
+	public void criarTelaDetalheSala(int op, 
 		TelaSala p, SalaCinema sla, int pos) {
 		
 		this.opcao = op;

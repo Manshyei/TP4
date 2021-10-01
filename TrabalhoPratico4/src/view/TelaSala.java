@@ -20,6 +20,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 	private JList<String> listaSalasCadastradas;
 	//private String[] listaSalas = new String[1000];
 	private String nome;
+	private int p;
 	SalaCinema sala = new SalaCinema();
 	
 	public void criaTelaSala(SalaCinema s){
@@ -88,7 +89,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de novo aluno
 		if(src == cadastroSala)
-			new TelaDetalheSala().inserirEditar(1, this, sala, 0);
+			new TelaDetalheSala().criarTelaDetalheSala(1, this, sala, 0);
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == refreshSala) {
@@ -96,15 +97,25 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 			listaSalasCadastradas.updateUI();
 		}
 		
-		if (src == voltar ) janela.dispose();
+		if (src == voltar) janela.dispose();
 		
 		if (src == pesquisa) {
-			nome = campoBusca.getText();
 			SalaCinema sl = new SalaCinema();
-			sl.cadastrar(sala.buscar(nome));
-			listaSalasCadastradas.setListData(sl.visualizarNome());
-			listaSalasCadastradas.updateUI();
+			nome = campoBusca.getText();
+			p = sala.retornaPos(nome);
+			if (p == -1) {
+				sl.produtoNaoEncontrado();
+				listaSalasCadastradas.setListData(sl.visualizarNome());
+				listaSalasCadastradas.updateUI();
+			}
+			else {
+				for (int i = 0; i < p; i ++)
+					sl.cadastrarvazio();
+				sl.cadastrar(sala.buscar(nome));
+				listaSalasCadastradas.setListData(sl.visualizarNome());
+				listaSalasCadastradas.updateUI();
 			
+			}
 		}
 
 	}
@@ -115,7 +126,7 @@ public class TelaSala implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 
 		if(e.getValueIsAdjusting() && src == listaSalasCadastradas) {
-			new TelaDetalheSala().inserirEditar(2, this, sala,
+			new TelaDetalheSala().criarTelaDetalheSala(2, this, sala,
 					listaSalasCadastradas.getSelectedIndex());
 		}
 	}
